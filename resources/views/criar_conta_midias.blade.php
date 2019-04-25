@@ -27,24 +27,24 @@
                                             <div class="py-3">
                                                 <div class="form-group">
                                                     <h6 class="mb-2">Blog</h6>
-                                                    <input type="text" class="form-control form-control-lg form-control-alt" name="blog" placeholder="http://www.suaempresa.com/blog">
+                                                    <input required type="text" class="form-control form-control-lg form-control-alt" name="blog" placeholder="http://www.suaempresa.com/blog">
                                                         <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                                                 </div>
                                                 <div class="form-group">
                                                     <h6 class="mb-2">Facebook</h6>
-                                                    <input type="text" class="form-control form-control-lg form-control-alt" name="facebook" placeholder="http://www.facebook.com/seunegocio">
+                                                    <input required type="text" class="form-control form-control-lg form-control-alt" name="facebook" placeholder="http://www.facebook.com/seunegocio">
                                                 </div>
                                                 <div class="form-group">
                                                     <h6 class="mb-2">Linkedin</h6>
-                                                    <input type="text" class="form-control form-control-lg form-control-alt" name="linkedin" placeholder="http://www.linkedin.com/seunegocio">
+                                                    <input required type="text" class="form-control form-control-lg form-control-alt" name="linkedin" placeholder="http://www.linkedin.com/seunegocio">
                                                 </div>
                                                 <div class="form-group">
                                                     <h6 class="mb-2">Twitter</h6>
-                                                    <input type="text" class="form-control form-control-lg form-control-alt" name="twitter" placeholder="http://www.twitter.com/seunegocio">
+                                                    <input required type="text" class="form-control form-control-lg form-control-alt" name="twitter" placeholder="http://www.twitter.com/seunegocio">
                                                 </div>
                                                 <div class="form-group">
                                                     <h6 class="mb-2">Instagram</h6>
-                                                    <input type="text" class="form-control form-control-lg form-control-alt" name="instagram" placeholder="http://www.instagram.com/seunegocio">
+                                                    <input required type="text" class="form-control form-control-lg form-control-alt" name="instagram" placeholder="http://www.instagram.com/seunegocio">
                                                 </div>
                                             </div>
                                             <div class="form-group">

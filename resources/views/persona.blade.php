@@ -10,9 +10,11 @@
             <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="nav-item ml-auto d-none d-md-flex align-items-center">
-                            <button type="button" class="btn d-none d-lg-inline-block mb-1 btn-roxo-fill">
+                        <a href="/persona/criar">
+                            <button type="button" class="btn d-none d-lg-inline-block mb-1 btn-secundario">
                                 <i class="fa fa-plus fa-fw mr-1"></i> Criar persona
                             </button>
+                            </a>
                         </li>
                 </ol>
             </nav>
@@ -25,64 +27,94 @@
 
 <!-- Advanced -->
 <div class="row">
-    <div class="col-md-3 col-sm-12 mb-5">
-        <ul class="menu-lateral">
-            <li class="active">Persona</li>
-        </ul>
-    </div>
-    <div class="col-md-9">
+@if(isset($message))
+            <div class="mb-3 alert alert-success" role="alert">
+                {{ $message }}
+            </div>
+            
+            @endif
+    <div class="col-md-12">
         <div class="block block-bordered block-rounded">
-            <div class="block-content">
+                @if(isset($personas))
                 <div class="table-responsive">
                     <table class="table table-vcenter">
                         <thead class="thead-light">
                             <tr>
-                                <th class="text-center" style="width: 100px;">
-                                    Foto
-                                </th>
                                 <th>Nome</th>
-                                <th>Cargo</th>
                                 <th>Função</th>
                                 <th>Segmento</th>
-                                <th class="text-center">Ações</th>
+                                <th class="text-center"></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($personas as $p)
                             <tr>
-                                <td class="text-center">
-                                    <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar8.jpg" alt="">
-                                </td>
-                                <td class="font-w600">
-                                    Andrea Gardner
+                                <td class="font-w600 link-color">
+                                    {{ $p->nome }}
                                 </td>
                                 <td>
-                                    Administrador
+                                    {{ $p->cargo }}
                                 </td>
                                 <td>
-                                    Administrador
-                                </td>
-                                <td>
-                                    Administrador
+                                    {{ $p->segmento }}
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="/persona/detalhes" class="btn btn-sm btn-primary">
-                                            <i class="fa fa-pencil-alt"></i>
+                                        <a href="/persona/detalhes/{{ $p->id_persona}}" class="">
+                                        <button class="btn btn-cinza ml-2">Editar</button>
                                         </a>
-                                        <a  href="/persona/editar" class="btn btn-sm btn-primary">
-                                            <i class="fa fa-times"></i>
-                                        </a>
+                                        <button data-toggle="modal" data-target="#modal-sure" onclick="myFunction({{ $p->id_persona}})" class="btn btn-cinza ml-2">Deletar Persona</button>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
-            </div>
+                @endif
         </div>
     </div>
 </div>
+
+ <div class="modal fade" id="modal-sure" tabindex="-1" role="dialog" aria-labelledby="modal-terms" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form id="form_delete" action="" method="POST" >
+                    @method('DELETE')
+                        <div class="block block-transparent mb-0">
+                            <div class="block-header background-cinza">
+                                <h3 class="block-title">Você tem certeza?</h3>
+                                <div class="block-options">
+                                    <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                        <i class="fa fa-fw fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="block-content">
+                                <p>Você está prestes a excluir esta persona da sua conta. Todas as informações da persona serão perdidas.</p>
+                                <input type="hidden" id="id_persona" value="">
+                            </div>
+                            <div class="block-content block-content-full text-right bg-light">
+                                <button type="submit" class="btn btn-sm btn-secundario">Deletar persona</button>
+                                <button type="button" class="btn btn-sm btn-cinza" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 <!-- END Advanced -->
 </div>
 <!-- END Page Content -->
+<script>
+
+    function myFunction(id){4
+        var frm = document.getElementById('form_delete') || null;
+        if(frm) {
+        frm.action = '/api/deletar_persona/' + id; 
+        }
+    }
+
+</script>
+
 @endsection

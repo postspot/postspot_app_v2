@@ -28,13 +28,13 @@
                                     <div class="py-3">
                                         <div class="form-group">
                                             <h6 class="mb-2">Nome</h6>
-                                            <input type="text" class="form-control form-control-lg form-control-alt" name="name" placeholder="Insira seu nome">
+                                            <input type="text" required class="form-control form-control-lg form-control-alt" name="name" placeholder="Insira seu nome">
                                             <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                                             <input type="hidden" name="destino" value="/criar-conta-negocio" />
                                         </div>
                                         <div class="form-group">
                                             <h6 class="mb-2">Sobrenome</h6>
-                                            <input type="text" class="form-control form-control-lg form-control-alt" name="sobrenome" placeholder="Insira seu sobrenome">
+                                            <input type="text" required class="form-control form-control-lg form-control-alt" name="sobrenome" placeholder="Insira seu sobrenome">
                                         </div>
                                     </div>
                                     <div class="form-group">

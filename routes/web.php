@@ -25,17 +25,43 @@ Route::view('/trocar_senha'             ,       'trocar_senha');
 Route::group(['middleware' => ['jwt.verify']], function() {
     
     //SPRINT 1 - CADASTRO DO USUARIO E LOGIN
-    Route::view('/criar_conta_nome'     ,       'criar_conta_nome');
-    Route::view('/verificar_email'      ,       'verificar_email');
-    Route::view('/criar_conta_negocio'  ,       'criar_conta_negocio');
-    Route::view('/criar_conta_midias'   ,       'criar_conta_midias');
-    Route::view('/criar_conta_conteudo' ,       'criar_conta_conteudo');
-    Route::view('/criar_conta_montagem' ,       'criar_conta_montagem');
+    Route::view('/criar_conta_nome'                 ,       'criar_conta_nome');
+    Route::view('/verificar_email'                  ,       'verificar_email');
+    Route::view('/criar_conta_negocio'              ,       'criar_conta_negocio');
+    Route::view('/criar_conta_midias'               ,       'criar_conta_midias');
+    Route::view('/criar_conta_conteudo'             ,       'criar_conta_conteudo');
+    Route::view('/criar_conta_montagem'             ,       'criar_conta_montagem');
 
     //SPRINT 2 - DADOS DO PERFIL
-    Route::view('/dashboard'            ,       'dashboard');
-    Route::view('/perfil/informacoes'   ,       'perfil_informacoes');
-    Route::view('/perfil/seguranca'     ,       'perfil_seguranca');
+    Route::view('/dashboard'                        ,       'dashboard');
+    Route::view('/perfil/informacoes'               ,       'perfil_informacoes');
+    Route::view('/perfil/seguranca'                 ,       'perfil_seguranca');
+
+    //SPRINT 3 - PROJETO
+    Route::get('/estrategia/projeto'                ,       'ProjetoController@index');
+
+    //SPRINT 4 - ESTRATEGIA
+    Route::get('/estrategia/presenca'               ,       'EstrategiaController@index');
+    Route::get('/estrategia/negocio'                ,       'EstrategiaController@indexnegocio');
+    Route::get('/estrategia/tomevoz'                ,       'EstrategiaController@indextom');
+
+    //SPRINT 5 - PERSONA
+    Route::get('/persona'                           ,       'PersonaController@index');
+    Route::view('/persona/criar'                    ,       'persona_criar');
+    Route::get('/persona/{id}'                      ,       'PersonaController@show');
+    Route::get('/persona/detalhes/{id}'             ,       'PersonaController@showdetail');
+
+    //SPRINT 6 - PAUTAS
+    Route::get('/pauta'                             ,       'TarefaController@index');
+    Route::get('/pautas/filtro/{id}'                ,       'TarefaController@indexfiltro');
+    Route::get('/pauta/detalhes/{id}'               ,       'TarefaController@show');
+    Route::get('/pauta/editar/{id}'                 ,       'TarefaController@showdetail');
+    Route::get('/pauta/criar'                       ,       'TarefaController@indexCriar');
+
+     //SPRINT 7 - CONTEÚDOS
+     Route::get('/conteudos'                       ,       'TarefaController@indexconteudos');
+     Route::get('/conteudos/filtro/{id}'            ,       'TarefaController@indexconteudosfiltro');
+    
    
 });
 
@@ -63,22 +89,13 @@ Route::view('/conta/transacoes', 'conta_cobranca_transacoes');
 Route::view('/conta/metodos', 'conta_cobranca_metodos');
 
 //Estrategia
-Route::view('/estrategia/projeto', 'estrategia_projeto');
-Route::view('/estrategia/negocio', 'estrategia_negocio');
-Route::view('/estrategia/presenca', 'estrategia_presenca');
-Route::view('/estrategia/tomevoz', 'estrategia_tom_e_voz');
 
-//Persona
-Route::view('/persona', 'persona');
-Route::view('/persona/detalhes', 'persona_detalhes');
-Route::view('/persona/editar', 'persona_editar');
 
-//Pautas
-Route::view('/pautas', 'pautas');
-Route::view('/pauta/detalhes', 'pauta_detalhes');
+
+
 
 //Conteúdos
-Route::view('/conteudos', 'conteudos');
+
 
 //Criar Conta
 

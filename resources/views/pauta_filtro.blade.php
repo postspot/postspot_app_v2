@@ -30,9 +30,9 @@
 <div class="row">
     <div class="col-md-3 col-sm-12 mb-5">
         <ul class="menu-lateral">
-            <li class="active"><a href="/pauta">Todas as pautas</a></li>
-            <li><a href="/pautas/filtro/0">Pautas Salvas</a></li>
-            <li><a href="/pautas/filtro/5">Pautas Concluídas</a></li>
+            <li><a href="/pauta">Todas as pautas</a></li>
+            <li {{ $id == '0' ? 'class=active' : '' }} ><a href="/pautas/filtro/0">Pautas Salvas</a></li>
+            <li {{ $id == '5' ? 'class=active' : '' }} ><a href="/pautas/filtro/5">Pautas Concluídas</a></li>
         </ul>
     </div>
     <div class="col-md-9">
@@ -85,7 +85,7 @@
                     <td>
                     {{ $t->nome_tipo  }}
                     </td>
-                    <td>
+                    <td >
                     {{ $t->etapa }}
                     </td>
                    

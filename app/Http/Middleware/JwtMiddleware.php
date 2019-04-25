@@ -40,15 +40,17 @@ namespace App\Http\Middleware;
                     return redirect('entrar')->with('error','teste');
                 }
             } 
-            catch (Exception $e) {
+            catch (\ErrorException $e) {
+
+                dd($e);
                 if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
-                    return view('/criar_conta')->withmessage('Erro! Falha na sessão!');
+                    return redirect('entrar')->with('error','teste');
                 }
                 else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-                    return view('/criar_conta')->withmessage('Erro! Falha na sessão!');
+                    return redirect('entrar')->with('error','teste');
                 }
                 else{
-                    return view('/criar_conta')->withmessage('Erro! Falha na sessão!');
+                    return redirect('entrar')->with('error','teste');
                 }
             }
 

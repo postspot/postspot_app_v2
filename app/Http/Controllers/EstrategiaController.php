@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Projeto;
 use App\Estrategia;
 use JWTAuth;
+use Exception;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 class EstrategiaController extends Controller
 {
@@ -17,7 +19,28 @@ class EstrategiaController extends Controller
      */
     public function index()
     {
-        //
+        $user = JWTAuth::toUser(JWTAuth::getToken());
+        $estrategia = $user->projetos()->join('estrategias', 'estrategias.id_projeto', 'projetos.id_projeto')->select('estrategias.*')->where('projeto_ativo', '1')->first();
+
+        return view('estrategia_presenca',  ['estrategia' => $estrategia]);
+    }
+    public function indexnegocio()
+    {
+        $user = JWTAuth::toUser(JWTAuth::getToken());
+        $estrategia = $user->projetos()->join('estrategias', 'estrategias.id_projeto', 'projetos.id_projeto')->select('estrategias.*')->where('projeto_ativo', '1')->first();
+
+       //dd($estrategia);
+
+        return view('estrategia_negocio',  ['estrategia' => $estrategia]);
+    }
+    public function indextom()
+    {
+        $user = JWTAuth::toUser(JWTAuth::getToken());
+        $estrategia = $user->projetos()->join('estrategias', 'estrategias.id_projeto', 'projetos.id_projeto')->select('estrategias.*')->where('projeto_ativo', '1')->first();
+
+       //dd($estrategia);
+
+        return view('estrategia_tom_e_voz',  ['estrategia' => $estrategia]);
     }
 
     /**
@@ -95,6 +118,60 @@ class EstrategiaController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+    public function updatepresenca(Request $request, $id)
+    {
+        
+        try{
+            $estrategia = Estrategia::where('id_estrategia', $id)->first();
+            $info = $request->all();
+            $estrategia->fill($info);
+            
+            $estrategia->save();
+
+            return view('estrategia_presenca',  ['estrategia' => $estrategia], ['message' => 'Dados atualizados com sucesso!']);
+        }
+        catch (\Throwable $e) {
+
+            return view('estrategia_presenca',  ['estrategia' => $request], ['error' => 'Falha ao atualizar os dados']);
+        }
+        
+    }
+    public function updatenegocio(Request $request, $id)
+    {
+        
+        try{
+            $estrategia = Estrategia::where('id_estrategia', $id)->first();
+            $info = $request->all();
+            $estrategia->fill($info);
+            
+            $estrategia->save();
+
+            return view('estrategia_negocio',  ['estrategia' => $estrategia], ['message' => 'Dados atualizados com sucesso!']);
+        }
+        catch (\Throwable $e) {
+
+            return view('estrategia_negocio',  ['estrategia' => $request], ['error' => 'Falha ao atualizar os dados']);
+        }
+        
+    }
+    public function updatetom(Request $request, $id)
+    {
+        
+        try{
+            $estrategia = Estrategia::where('id_estrategia', $id)->first();
+            $info = $request->all();
+            $estrategia->fill($info);
+            
+            $estrategia->save();
+
+            return view('estrategia_tom_e_voz',  ['estrategia' => $estrategia], ['message' => 'Dados atualizados com sucesso!']);
+        }
+        catch (\Throwable $e) {
+
+            return view('estrategia_negocio',  ['estrategia' => $request], ['error' => 'Falha ao atualizar os dados']);
+        }
+        
     }
 
     /**

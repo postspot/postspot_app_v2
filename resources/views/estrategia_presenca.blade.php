@@ -7,15 +7,6 @@
     <div class="content content-full">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
             <h1 class="flex-sm-fill font-size-h3 font-w400 mt-2 mb-0 mb-sm-2">Estratégia</h1>
-            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="nav-item ml-auto d-none d-md-flex align-items-center">
-                            <button type="button" class="btn d-none d-lg-inline-block mb-1 btn-roxo-fill">
-                                <i class="fa fa-file fa-fw mr-1"></i> Exportar
-                            </button>
-                        </li>
-                </ol>
-            </nav>
         </div>
     </div>
 </div>
@@ -36,69 +27,61 @@
         <div class="col-md-6 col-sm-12">
             <div class="block block-bordered block-rounded">
                 <div class="block-content">
-                    <div class="form-group">
-                        <label>Website</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text input-group-text-alt">
-                                    <i class="si si-home"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control form-control-alt" placeholder="http://www.suaempresa.com/blog" >
-                        </div>
-                    </div>
+                @if(isset($message))
+                <div class="mb-3 alert alert-success" role="alert">
+                    {{ $message }}
+                </div>
+                
+                @endif
+                @if(isset($error))
+                <div class="mb-3 alert alert-danger" role="alert">
+                    {{ $error }}
+                </div>
+                
+                @endif
                     
+                <form action="/api/atualiza_presenca/{{ $estrategia->id_estrategia }}" method="post">
+                @method('PUT')
                     <div class="form-group">
                         <label>Blog</label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text input-group-text-alt">
-                                    <i class="fab fa-wordpress-simple"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control form-control-alt" placeholder="http://www.facebook.com/seunegocio" >
+                            
+                            <input type="text" name="blog" class="form-control form-control-alt" value="{{ $estrategia->blog }}" placeholder="http://www.facebook.com/seunegocio" >
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label>Facebook</label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text input-group-text-alt">
-                                    <i class="si si-social-facebook"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control form-control-alt" placeholder="http://www.linkedin.com/seunegocio">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Twitter</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text input-group-text-alt">
-                                    <i class="fab fa-twitter"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control form-control-alt" placeholder="http://www.twitter.com/seunegocio" >
+                            
+                            <input type="text" name="facebook" class="form-control form-control-alt" value="{{ $estrategia->facebook }}" placeholder="http://www.linkedin.com/seunegocio">
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Linkedin</label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text input-group-text-alt">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control form-control-alt" placeholder="http://www.instagram.com/seunegocio">
+                           
+                            <input type="text" name="linkedin" class="form-control form-control-alt" value="{{ $estrategia->linkedin }}" placeholder="http://www.instagram.com/seunegocio">
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label>Twitter</label>
+                        <div class="input-group">
+                            <input type="text" name="twitter" class="form-control form-control-alt" value="{{ $estrategia->twitter }}" placeholder="http://www.twitter.com/seunegocio" >
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label>Instagram</label>
+                        <div class="input-group">
+                            <input type="text" name="instagram" class="form-control form-control-alt" value="{{ $estrategia->instagram }}" placeholder="http://www.twitter.com/seunegocio" >
+                        </div>
+                    </div>
+                   
                     
                     <div class="text-right">
-                        <button class="btn btn-roxo-empty">Cancelar</button>
-                        <button class="btn btn-roxo-fill ml-2">Salvar</button>
-                    </div>
+                            <button class="btn btn-secundario ml-2">Atualizar</button>
+                        </div>
+                    </form> 
                 </div>
             </div>
         </div>

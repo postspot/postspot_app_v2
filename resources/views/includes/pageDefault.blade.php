@@ -67,7 +67,7 @@
                                     <a href="/"><img src="{{ asset('media/temp/logo.png') }}" alt=""></a>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link active" href="/estrategia">
+                                <a class="nav-main-link active" href="/estrategia/projeto">
                                     <span class="nav-main-link-name">Estratégia</span>
                                 </a>
                             </li>

@@ -7429,6 +7429,7 @@ button.bg-dark:focus {
 .ml-auto,
 .mx-auto {
   margin-left: auto !important;
+  margin-right: 10px;
 }
 
 @media (min-width: 576px) {
@@ -12326,7 +12327,7 @@ a.block.block-link-shadow:active {
   display: inline-block;
   padding: 6px 5px;
   line-height: 1;
-  color: #0665d0;
+  color: #403b3b;
   background: none;
   border: none;
   cursor: pointer;

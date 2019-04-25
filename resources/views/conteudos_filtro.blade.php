@@ -29,12 +29,12 @@
     <div class="row">
         <div class="col-md-3 col-sm-12 mb-5">
             <ul class="menu-lateral">
-                <li class="active"><a href="conteudos">Todos os conteúdos</a></li>
-                <li><a href="conteudos/filtro/8">Conteúdos em produção</a></li>
-                <li><a href="conteudos/filtro/9">Conteúdos em revisão</a></li>
-                <li><a href="conteudos/filtro/10">Conteúdos em aprovação</a></li>
-                <li><a href="conteudos/filtro/11">Conteúdos em ajuste</a></li>
-                <li><a href="conteudos/filtro/12">Conteúdos concluídos</a></li>
+                <li><a href="/conteudos">Todos os conteúdos</a></li>
+                <li {{ $id == '8' ? 'class=active' : '' }}><a href="/conteudos/filtro/8">Conteúdos em produção</a></li>
+                <li {{ $id == '9' ? 'class=active' : '' }}><a href="/conteudos/filtro/9">Conteúdos em revisão</a></li>
+                <li {{ $id == '10' ? 'class=active' : '' }}><a href="/conteudos/filtro/10">Conteúdos em aprovação</a></li>
+                <li {{ $id == '11' ? 'class=active' : '' }}><a href="/conteudos/filtro/11">Conteúdos em ajuste</a></li>
+                <li {{ $id == '12' ? 'class=active' : '' }}><a href="/conteudos/filtro/12">Conteúdos concluídos</a></li>
             </ul>
         </div>
         <div class="col-md-9">

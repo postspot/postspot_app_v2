@@ -17,7 +17,12 @@ class ProjetoController extends Controller
      */
     public function index()
     {
-        //
+        $user = JWTAuth::toUser(JWTAuth::getToken());
+        $proj = $user->projetos()->where('projeto_ativo', '1')->first();
+
+        //dd($proj);
+
+        return view('estrategia_projeto',  ['proj' => $proj]);
     }
 
     /**
@@ -102,7 +107,19 @@ class ProjetoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $projeto = Projeto::where('id_projeto', $id)->first();
+            $info = $request->all();
+            $projeto->fill($info);
+            
+            $projeto->save();
+
+            return view('estrategia_projeto',  ['proj' => $projeto], ['message' => 'Dados atualizados com sucesso!']);
+        }
+        catch (\Throwable $e) {
+
+            return view('estrategia_projeto',  ['proj' => $request], ['error' => 'Falha ao atualizar os dados']);
+        }
     }
 
     /**

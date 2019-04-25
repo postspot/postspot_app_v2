@@ -26,21 +26,21 @@
                                 <div class="py-3">
                                     <div class="form-group">
                                         <h6 class="mb-2">Qual o nome do seu negócio?</h6>
-                                        <input type="text" class="form-control form-control-lg form-control-alt" name="nome_projeto" placeholder="Insira o nome do seu negócio, organização, etc.">
+                                        <input type="text" required class="form-control form-control-lg form-control-alt" name="nome_projeto" placeholder="Insira o nome do seu negócio, organização, etc.">
                                     </div>
                                     <div class="form-group">
                                         <h6 class="mb-2">Qual o seu segmento de mercado?</h6>
-                                        <input type="text" class="form-control form-control-lg form-control-alt" name="segmento_projeto" placeholder="Selecione o seu segmento de mercado">
+                                        <input type="text" required class="form-control form-control-lg form-control-alt" name="segmento_projeto" placeholder="Selecione o seu segmento de mercado">
                                     </div>
                                     <div class="form-group">
                                         <h6 class="mb-2">Qual o seu website?</h6>
-                                        <input type="text" class="form-control form-control-lg form-control-alt" name="site_projeto" placeholder="http://www.seunegocio.com">
+                                        <input type="text" required class="form-control form-control-lg form-control-alt" name="site_projeto" placeholder="http://www.seunegocio.com">
                                         <p>Se você não tiver um website ou blog, pode usar o link da sua conta do seu Facebook, Linkedin ou Twitter.</p>
                                         <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                                     </div>
                                     <div class="form-group">
                                         <h6>Seu negócio é uma agência</h6>
-                                        <select class="form-control form-control-alt" name="agencia_projeto">
+                                        <select required class="form-control form-control-alt" name="agencia_projeto">
                                             
                                             <option value="1">Sim</option>
                                             <option value="2" selected>Não</option>

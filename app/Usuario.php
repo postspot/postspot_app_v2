@@ -94,7 +94,7 @@ class Usuario extends Authenticatable implements JWTSubject
 
 	public function log_tarefas()
 	{
-		return $this->hasMany(\App\Models\LogTarefa::class, 'id');
+		return $this->hasMany(\App\LogTarefa::class, 'id_usuario');
 	}
 
 	public function membros_equipes()

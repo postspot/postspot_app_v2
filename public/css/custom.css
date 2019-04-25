@@ -392,7 +392,7 @@ width: auto;
 .table .thead-light th {
     color: #443852;
     background-color: #F2F2F2;
-    border-color: #CFCFCF;
+    /* border-color: #CFCFCF; */
     text-transform: uppercase;
 }
 .table-border{
