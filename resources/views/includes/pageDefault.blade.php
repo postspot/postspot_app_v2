@@ -196,6 +196,27 @@
         <!-- Laravel Scaffolding JS -->
         <script src="{{ asset('js/laravel.app.js') }}"></script>
 
+        
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+
         @yield('js_after')
+
+        <script>
+            $(document).ready(function() {
+                $('#summernote').summernote({
+                    tabsize: 2,
+                    height: 100,
+                    toolbar: [
+                        // [groupName, [list of button]]
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['font', ['strikethrough', 'superscript', 'subscript']],
+                        ['fontsize', ['fontsize']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']]
+                    ]
+                });
+            });
+        </script>
     </body>
 </html>

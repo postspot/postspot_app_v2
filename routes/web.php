@@ -61,6 +61,9 @@ Route::group(['middleware' => ['jwt.verify']], function() {
      //SPRINT 7 - CONTEÚDOS
      Route::get('/conteudos'                       ,       'TarefaController@indexconteudos');
      Route::get('/conteudos/filtro/{id}'            ,       'TarefaController@indexconteudosfiltro');
+     Route::view('/conteudo/detalhes', 'conteudo_detalhes');
+     Route::view('/conteudo/detalhes-edicao', 'conteudo_detalhes_editar');
+     Route::view('/conteudo/detalhes-pauta', 'conteudo_detalhes_pauta');
     
    
 });
