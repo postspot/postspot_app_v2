@@ -36,8 +36,13 @@ class TarefaController extends Controller
     public function indexfiltro($id)
     {
         $user = JWTAuth::toUser(JWTAuth::getToken());
-        
-        $tarefas = $user->log_tarefas()->join('tarefas', 'tarefas.id_tarefa', 'log_tarefas.id_tarefa')->join('personas', 'tarefas.id_persona', 'personas.id_persona')->join('tipo_tarefa','tarefas.id_tipo','tipo_tarefa.id_tipo')->where([['status','=','1'], ['etapa', '=', $id]])->get();
+
+        if($id == 0){
+            $tarefas = $user->log_tarefas()->join('tarefas', 'tarefas.id_tarefa', 'log_tarefas.id_tarefa')->join('personas', 'tarefas.id_persona', 'personas.id_persona')->join('tipo_tarefa','tarefas.id_tipo','tipo_tarefa.id_tipo')->where([['status','=','1'], ['etapa', '=', $id]])->get();
+        }
+        else{
+            $tarefas = $user->log_tarefas()->join('tarefas', 'tarefas.id_tarefa', 'log_tarefas.id_tarefa')->join('personas', 'tarefas.id_persona', 'personas.id_persona')->join('tipo_tarefa','tarefas.id_tipo','tipo_tarefa.id_tipo')->where([['status','=','1'], ['etapa', '>', '0']])->get();
+        }
 
         return view('pauta_filtro',  ['tarefas' => $tarefas], ['id' => $id]);
     }
@@ -46,8 +51,8 @@ class TarefaController extends Controller
     {
         $user = JWTAuth::toUser(JWTAuth::getToken());
         
-        $tarefas = $user->log_tarefas()->join('tarefas', 'tarefas.id_tarefa', 'log_tarefas.id_tarefa')->select(\DB::raw('log_tarefas.data_prevista,
-        tarefas.id_tarefa, tarefas.nome_tarefa, tarefas.data_criacao, log_tarefas.etapa'))->where([['status','=','1'], ['etapa', '>', '6']])->get();
+        $tarefas = $user->log_tarefas()->join('tarefas', 'tarefas.id_tarefa', 'log_tarefas.id_tarefa')->join('tamanhos', 'tamanhos.id_tamanho', 'tarefas.id_tamanho')->select(\DB::raw('log_tarefas.data_prevista,
+        tarefas.id_tarefa, tarefas.nome_tarefa, tarefas.data_criacao, log_tarefas.etapa, tamanhos.tamanho'))->where([['status','=','1'], ['etapa', '>', '6']])->get();
 
         //dd($tarefas);
 
@@ -159,6 +164,8 @@ class TarefaController extends Controller
 
         $pauta->persona = $user->projetos()->join('personas', 'personas.id_projeto', 'projetos.id_projeto')->select('personas.*')->where('projeto_ativo', '1')->get();
         
+        $pauta->tipos = $tipos = \App\TipoTarefa::get();
+
         return view('pauta_detalhes',  ['pauta' => $pauta]);
         
     }
@@ -169,8 +176,39 @@ class TarefaController extends Controller
         $pauta = Tarefa::where('id_tarefa',$id)->first();
 
         $pauta->persona = $user->projetos()->join('personas', 'personas.id_projeto', 'projetos.id_projeto')->select('personas.*')->where('projeto_ativo', '1')->get();
-        
+        $pauta->tipos = $tipos = \App\TipoTarefa::get();
+
         return view('pauta_editar',  ['pauta' => $pauta]);
+        
+    }
+    public function conteudodetalhes($id)
+    {
+
+        $user = JWTAuth::toUser(JWTAuth::getToken());
+        $pauta = Tarefa::where('id_tarefa',$id)->first();
+
+        $pauta->log = $pauta->log_tarefas()->where('status', '=', '1')->first();
+
+        //dd($pauta->log);
+        $pauta->comentarios = $pauta->comentarios()->join('usuarios', 'usuarios.id', 'comentarios.id_usuario')->get();
+        $pauta->publicacoes = $pauta->publicacoes()->first();
+        
+        return view('conteudo_detalhes',  ['pauta' => $pauta]);
+        
+    }
+    public function conteudodetalheseditar($id)
+    {
+
+        $user = JWTAuth::toUser(JWTAuth::getToken());
+        $pauta = Tarefa::where('id_tarefa',$id)->first();
+
+        $pauta->log = $pauta->log_tarefas()->where('status', '=', '1')->first();
+
+        //dd($pauta->log);
+        $pauta->comentarios = $pauta->comentarios()->join('usuarios', 'usuarios.id', 'comentarios.id_usuario')->get();
+        $pauta->publicacoes = $pauta->publicacoes()->first();
+        
+        return view('conteudo_detalhes_editar',  ['pauta' => $pauta]);
         
     }
 
@@ -203,6 +241,7 @@ class TarefaController extends Controller
             $pauta->save();
 
             $pauta->persona = $user->projetos()->join('personas', 'personas.id_projeto', 'projetos.id_projeto')->select('personas.*')->where('projeto_ativo', '1')->get();
+            $pauta->tipos = $tipos = \App\TipoTarefa::get();
 
             return view('pauta_editar',  ['pauta' => $pauta], ['message' => 'Dados atualizados com sucesso!']);
         }

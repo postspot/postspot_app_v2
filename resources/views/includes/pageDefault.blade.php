@@ -32,6 +32,7 @@
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,600">
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
         <link rel="stylesheet" id="css-theme" href="{{ asset('css/dashmix.css') }}">
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
@@ -67,22 +68,24 @@
                                     <a href="/"><img src="{{ asset('media/temp/logo.png') }}" alt=""></a>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link active" href="/estrategia/projeto">
+                                
+                                <a class="nav-main-link {{ Request::is('estrategia/*') ? 'active' : '' }}" href="/estrategia/projeto">
                                     <span class="nav-main-link-name">Estratégia</span>
                                 </a>
                             </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="/persona">
+                            
+                            <li class="nav-main-item ">
+                                <a class="nav-main-link {{ Request::is('persona/*') || Request::is('persona')  ? 'active' : '' }}" href="/persona">
                                     <span class="nav-main-link-name">Persona</span>
                                 </a>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="/pauta">
+                                <a class="nav-main-link {{ Request::is('pauta/*') || Request::is('pauta') ? 'active' : '' }}" href="/pauta">
                                     <span class="nav-main-link-name">Pautas</span>
                                 </a>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="/conteudos">
+                                <a class="nav-main-link {{ Request::is('conteudos/*') || Request::is('conteudos') || Request::is('conteudo/*')  ? 'active' : '' }}" href="/conteudos">
                                     <span class="nav-main-link-name">Conteúdos</span>
                                 </a>
                             </li>

@@ -11,11 +11,10 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Token;
 use App\Mail\ResponseEmail;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-
         //LOGIN DO USUÁRIO
         public function authenticate(Request $request)
         {
@@ -324,6 +323,23 @@ class UserController extends Controller
                                 return view('/login')->withmessage('Erro! Falha na atualização!');
                         }
 
+                        //dd($request->file('teste'));
+
+                        $file = $request->image;
+
+                        // Se informou o arquivo, retorna um boolean
+                        $file = $request->hasFile('image');
+                        
+                        // Se é válido, retorna um boolean
+                        $file = $request->hasFile('image');
+                        
+
+                        $upload = $request->image->storeAs('temp', $request->file('image')->getClientOriginalName());
+
+                        if ( !$upload ){
+                                dd($upload);
+                        }
+
                         $retorno = '/perfil_informacoes';
 
                         $data = $request->only(['name', 'sobrenome', 'email']);
@@ -344,6 +360,10 @@ class UserController extends Controller
                         }
 
                         $user->fill($data);
+
+                        Storage::delete("temp/{$user->foto_usuario}");
+
+                        $user->foto_usuario = $request->file('image')->getClientOriginalName();
 
                         $user->save();
 

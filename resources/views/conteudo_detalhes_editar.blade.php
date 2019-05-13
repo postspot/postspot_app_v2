@@ -1,12 +1,34 @@
 @extends('includes.pageDefault')
 
 @section('content')
+<style>
 
+.popover-content{
+    display: none;
+}
+
+</style>
 
 <div class="bg-body-light">
     <div class="content content-full">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
             <h1 class="flex-sm-fill font-size-h3 font-w400 mt-2 mb-0 mb-sm-2">O que é marketing digital?</h1>
+            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="nav-item ml-auto d-none d-md-flex align-items-center">
+                            <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn d-none d-lg-inline-block mb-1 btn-cinza">
+                                 Salvar Conteúdo
+                            </button>
+                    </li>
+                    <li class="nav-item ml-auto d-none d-md-flex align-items-center">
+                        
+                        <button type="button" data-toggle="modal" data-target="#modal-sure" class="btn d-none d-lg-inline-block mb-1 btn-secundario">
+                                Finalizar Redação
+                        </button>
+                        
+                    </li>
+                </ol>
+            </nav>
         </div>
     </div>
 </div>
@@ -18,9 +40,9 @@
     <div class="row">
         <div class="col-md-3 col-sm-12">
             <ul class="menu-lateral">
-                <li><a href="/conteudo/detalhes">Visualizar</a></li>
-                <li class="active">Editar</li>
-                <li><a href="/conteudo/detalhes-pauta">Pauta</a></li>
+                <li><a href="/conteudo/detalhes/{{ $pauta->id_tarefa }}">Visualizar</a></li>
+                <li class="active"><a href="/conteudo/detalhes/editar/{{ $pauta->id_tarefa }}">Editar</a></li>
+                <li><a href="/pauta/detalhes/{{ $pauta->id_tarefa }}">Pauta</a></li>
             </ul>
         </div>
         <div class="col-md-6 col-sm-12">
@@ -30,48 +52,57 @@
                 </div>
             </div>
             <div class="font-size-sm">
-                <textarea id="summernote" name="editordata"></textarea>
+                <textarea class="block block-bordered block-rounded" id="summernote" name="editordata"></textarea>
             </div>
         </div>
         <div class="col-md-3 col-sm-12">
             <div class="block block-bordered block-rounded p-3">
-                <h1 class="font-size-h3 font-w400">Status</h1>
-                <p>redação aprovação</p>
-                <p>21 de abr de 2019, 08:32</p>
+                <h5>Status</h5>
+
+                <?php
+                if($pauta->log->etapa == 8)
+                     $pauta->log->etapa = "Em produção";
+                if($pauta->log->etapa == 9)
+                    $pauta->log->etapa = "Revisão";
+                if($pauta->log->etapa == 10)
+                    $pauta->log->etapa = "Em Aprovação";
+                if($pauta->log->etapa == 11)
+                    $pauta->log->etapa = "Em Ajuste";
+                if($pauta->log->etapa == 12)
+                    $pauta->log->etapa = "Concluída";
+                ?>
+
+                <p>{{ $pauta->log->etapa }}</p>
+                <p>{{ date('d/m/Y', strtotime($pauta->log->data_criacao)) }}</p>
             </div>
             <div class="block block-bordered block-rounded">
                 <div class="font-size-sm p-3">
+                <h5>Comentários</h5>
+
+                    @foreach($pauta->comentarios as $c)
                     <div class="media">
                         <a class="img-link mr-2" href="javascript:void(0)">
-                            <img class="img-avatar img-avatar32 img-avatar-thumb" src="{{ asset('media/avatars/avatar8.jpg') }}" alt="">
+                            <img class="img-avatar img-avatar32 img-avatar-thumb" src="{{ env('APP_URL').'/storage/temp' }}/{{ $c->foto_usuario }}" alt="">
                         </a>
                         <div class="media-body">
                             <p class="mb-1">
-                                <span class="font-w600">Helena</span>
-                                Helena Leo mi nec lectus. Nam commodo turpis id lectus scelerisque vulputate. Integer sed dolor erat. Fusce erat ipsum, varius vel euismod sed, tristique et lectus?
+                                <span class="font-w600">{{ $c->name }}</span><br>
+                                {{ $c->comentario }}
                             </p>
                         </div>
                     </div>
-                    <div class="media">
-                        <a class="img-link mr-2" href="javascript:void(0)">
-                            <img class="img-avatar img-avatar32 img-avatar-thumb" src="{{ asset('media/avatars/avatar8.jpg') }}" alt="">
-                        </a>
-                        <div class="media-body">
-                            <p class="mb-1">
-                                <span class="font-w600">Helena</span>
-                                Helena Leo mi nec lectus. Nam commodo turpis id lectus scelerisque vulputate. Integer sed dolor erat. Fusce erat ipsum, varius vel euismod sed, tristique et lectus?
-                            </p>
-                        </div>
-                    </div>
+                    @endforeach
+                    
                 </div>
                 <div class="font-size-sm p-2">
                     <form action="db_social_compact.html" method="POST" onsubmit="return false;">
-                        <input type="text" class="form-control form-control-alt" placeholder="Write a comment..">
+                        <input type="hidden" name='id_tarefa' value="{{ $pauta->id_tarefa }}">
+                        <input type="text" class="form-control form-control-alt" placeholder="Escrever comentário">
                     </form>
                 </div>
             </div>
             <div class="block block-bordered block-rounded p-3">
-                <p>Insira sua img aqui</p>
+                <h5>Imagem sugerida</h5>
                 <input type="file" name="" id="">
             </div>
         </div>

@@ -76,11 +76,12 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Formato</label>
-                                <select name='id_tipo'  class="form-control form-control-alt">
-                                    <option value="0" selected disabled>Selecione o formato</option>
-                                    <option value="1"  {{ $pauta->id_tipo == 1 ? 'selected' : '' }}>Blog Post</option>
-                                    <option value="2"  {{ $pauta->id_tipo == 2 ? 'selected' : '' }}>Ebook</option>
-                                </select>
+                                <select name='id_tipo' class="form-control form-control-alt">
+                                    <option value="0" selected>Selecione o formato</option>
+                                    @foreach($pauta->tipos as $t)
+                                    <option value="{{ $t->id_tipo }}" {{ $pauta->id_tipo == $t->id_tipo ? 'selected' : '' }}>{{ $t->nome_tipo }} </option>
+                                    @endforeach
+                                </select>                                
                             </div>
                         </div>
 

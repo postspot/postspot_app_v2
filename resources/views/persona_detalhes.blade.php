@@ -79,7 +79,50 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Segmento</label>
-                                    <input name='segmento' disabled type="text" class="form-control form-control-alt" placeholder="Insira o segmento" value="{{ $persona->segmento }}">
+                                    <select required disabled class="form-control form-control-alt" name="segmento">
+                                        <option value='Agência e Serviços criativos' {{ $persona->segmento == 'Agência e Serviços criativos' ? 'selected' : '' }} > Agência e Serviços criativos</option>
+                                        <option value='Agricultura e Serviços de alimentação' {{ $persona->segmento == 'Agricultura e Serviços de alimentação' ? 'selected' : '' }} > Agricultura e Serviços de alimentação</option>
+                                        <option value='Arquitetura e Construção' {{ $persona->segmento == 'Arquitetura e Construção' ? 'selected' : '' }} > Arquitetura e Construção</option>
+                                        <option value='Artes e Artistas' {{ $persona->segmento == 'Artes e Artistas' ? 'selected' : '' }} > Artes e Artistas   
+                                        <option value='Beleza e Cuidados pessoais' {{ $persona->segmento == 'Beleza e Cuidados pessoais' ? 'selected' : '' }} > Beleza e Cuidados pessoais</option>
+                                        <option value='Casa e Jardim' {{ $persona->segmento == 'Casa e Jardim' ? 'selected' : '' }} > Casa e Jardim</option>
+                                        <option value='Computadores e Eletrônicos' {{ $persona->segmento == 'Computadores e Eletrônicos' ? 'selected' : '' }} > Computadores e Eletrônicos</option>
+                                        <option value='Construção civil' {{ $persona->segmento == 'Construção civil' ? 'selected' : '' }} > Construção civil</option>
+                                        <option value='Consultoria' {{ $persona->segmento == 'Consultoria' ? 'selected' : '' }} > Consultoria</option>
+                                        <option value='Ecommerce' {{ $persona->segmento == 'Ecommerce' ? 'selected' : '' }} > Ecommerce</option>
+                                        <option value='Educação e Treinamento' {{ $persona->segmento == 'Educação e Treinamento' ? 'selected' : '' }} > Educação e Treinamento</option>
+                                        <option value='Entretenimento' {{ $persona->segmento == 'Entretenimento' ? 'selected' : '' }} > Entretenimento e Eventos</option>
+                                        <option value='Esportes' {{ $persona->segmento == 'Esportes' ? 'selected' : '' }} > Esportes</option>
+                                        <option value='Farmacêutico' {{ $persona->segmento ==  'Farmacêutico' ? 'selected' : '' }} > Farmacêutico</option>
+                                        <option value='Foto e Vídeo' {{ $persona->segmento ==  'Foto e Vídeo' ? 'selected' : '' }} > Foto e Vídeo</option>
+                                        <option value='Governamental' {{ $persona->segmento ==  'Governamental' ? 'selected' : '' }} > Governamental</option>
+                                        <option value='Imobiliário ' {{ $persona->segmento ==  'Imobiliário ' ? 'selected' : '' }} > Imobiliário </option>
+                                        <option value='Jogos' {{ $persona->segmento ==  'Jogos' ? 'selected' : '' }} > Jogos</option>
+                                        <option value='Jurídico' {{ $persona->segmento ==  'Jurídico' ? 'selected' : '' }} > Jurídico</option>
+                                        <option value='Manufatura' {{ $persona->segmento ==  'Manufatura' ? 'selected' : '' }} > Manufatura</option>
+                                        <option value='Marketing e Anúncios' {{ $persona->segmento ==  'Marketing e Anúncios' ? 'selected' : '' }} > Marketing e Anúncios</option>
+                                        <option value='Mídia e Publicidade' {{ $persona->segmento ==  'Mídia e Publicidade' ? 'selected' : '' }} > Mídia e Publicidade</option>
+                                        <option value='Médico, Dental e Saúde' {{ $persona->segmento ==  'Médico, Dental e Saúde' ? 'selected' : '' }} > Médico, Dental e Saúde</option>
+                                        <option value='Mobile e Aplicativos' {{ $persona->segmento ==  'Mobile e Aplicativos' ? 'selected' : '' }} > Mobile e Aplicativos</option>
+                                        <option value='Música e Músicos' {{ $persona->segmento ==  'Música e Músicos' ? 'selected' : '' }} > Música e Músicos</option>
+                                        <option value='Negócios e Finanças' {{ $persona->segmento ==  'Negócios e Finanças' ? 'selected' : '' }} > Negócios e Finanças</option>
+                                        <option value='Ofertas e Cupons de desconto' {{ $persona->segmento ==  'Ofertas e Cupons de desconto' ? 'selected' : '' }} > Ofertas e Cupons de desconto</option>
+                                        <option value='Politica' {{ $persona->segmento ==  'Politica' ? 'selected' : '' }} > Politica</option>
+                                        <option value='Relações públicas' {{ $persona->segmento ==  'Relações públicas' ? 'selected' : '' }} > Relações públicas</option>
+                                        <option value='Recrutamento e Seleção' {{ $persona->segmento ==  'Recrutamento e Seleção' ? 'selected' : '' }} > Recrutamento e Seleção</option>
+                                        <option value='Religião' {{ $persona->segmento ==  'Religião' ? 'selected' : '' }} > Religião</option>
+                                        <option value='Rede social e Comunidades online' {{ $persona->segmento ==  'Rede social e Comunidades online' ? 'selected' : '' }} > Rede social e Comunidades online</option>
+                                        <option value='Saúde e Bem-estar' {{ $persona->segmento ==  'Saúde e Bem-estar' ? 'selected' : '' }} > Saúde e Bem-estar</option>
+                                        <option value='Seguros' {{ $persona->segmento ==  'Seguros' ? 'selected' : '' }} > Seguros</option>
+                                        <option value='Sem fins lucrativos' {{ $persona->segmento ==  'Sem fins lucrativos' ? 'selected' : '' }} > Sem fins lucrativos</option>
+                                        <option value='Serviços profissionais' {{ $persona->segmento ==  'Serviços profissionais' ? 'selected' : '' }} > Serviços profissionais</option>
+                                        <option value='Software e Aplicativos' {{ $persona->segmento ==  'Software e Aplicativos' ? 'selected' : '' }} > Software e Aplicativos</option>
+                                        <option value='Telecomunicações' {{ $persona->segmento ==  'Telecomunicações' ? 'selected' : '' }} > Telecomunicações</option>
+                                        <option value='Varejo' {{ $persona->segmento ==  'Varejo' ? 'selected' : '' }} > Varejo</option>
+                                        <option value='Viagem e Transportes' {{ $persona->segmento ==  'Viagem e Transportes' ? 'selected' : '' }} > Viagem e Transportes</option>
+                                        <option value='Vitaminas e Suplementos' {{ $persona->segmento ==  'Vitaminas e Suplementos' ? 'selected' : '' }} > Vitaminas e Suplementos</option>
+                                        <option value='Outro' {{ $persona->segmento ==  'Outro' ? 'selected' : '' }} > Outro</option>
+                                    </select>
                                 </div>
                             </div>
                         

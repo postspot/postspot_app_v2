@@ -45,7 +45,7 @@ class Tarefa extends Model
 
 	public function projeto()
 	{
-		return $this->belongsTo(\App\Models\Projeto::class, 'id_projeto');
+		return $this->belongsTo(\App\Projeto::class, 'id_projeto');
 	}
 
 	public function tipo_tarefa()
@@ -55,16 +55,16 @@ class Tarefa extends Model
 
 	public function comentarios()
 	{
-		return $this->hasMany(\App\Models\Comentario::class, 'id_tarefa');
+		return $this->hasMany(\App\Comentario::class, 'id_tarefa');
 	}
 
 	public function log_tarefas()
 	{
-		return $this->hasMany(\App\Models\LogTarefa::class, 'id_tarefa');
+		return $this->hasMany(\App\LogTarefa::class, 'id_tarefa');
 	}
 
-	public function publicacos()
+	public function publicacoes()
 	{
-		return $this->hasMany(\App\Models\Publicaco::class, 'id_tarefa');
+		return $this->hasMany(\App\Publicacao::class, 'id_tarefa');
 	}
 }
