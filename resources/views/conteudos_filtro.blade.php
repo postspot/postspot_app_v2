@@ -38,8 +38,6 @@
             </ul>
         </div>
         <div class="col-md-9">
-            <div class="block block-bordered block-rounded">
-                <div class="block-content">
                     <div class="table-responsive">
 
                         <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
@@ -83,17 +81,17 @@
                                     <a href='/conteudo/detalhes/{{ $t->id_tarefa }}'> {{ $t->nome_tarefa }}</a>
                                     </td>
                                     <td>
-                                    {{ $t->nome }}
-                                    </td>
-                                    <td>
-                                    {{ $t->data_criacao }}
-                                    </td>
-                                    <td>
-                                    {{ $t->data_prevista }}
-                                    </td>
-                                    <td>
-                                    {{ $t->etapa }}
-                                    </td>
+                            {{ $t->tamanho }}
+                            </td>
+                            <td>
+                            {{ date('d/m/Y', strtotime($t->data_criacao)) }}
+                            </td>
+                            <td>
+                            {{ date('d/m/Y', strtotime($t->data_prevista)) }}
+                            </td>
+                            <td>
+                            {{ $t->etapa }}
+                            </td>
                                 
                                 </tr>
                                 @endforeach
@@ -101,8 +99,6 @@
                         </table>
 
                     </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- END Advanced -->

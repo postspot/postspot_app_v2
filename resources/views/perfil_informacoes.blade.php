@@ -23,14 +23,13 @@
         </div>
         <div class="col-md-6 col-sm-12">
             <div class="block block-bordered block-rounded">
-                <form class="" action="/api/updateperfil/{{ JWTAuth::toUser(JWTAuth::getToken())->id }}" method="post">
-                    @method('PUT')
+                <form enctype="multipart/form-data" action="/api/updateperfil/{{ JWTAuth::toUser(JWTAuth::getToken())->id }}" method="post">
                     <div class="block-content">
                         <div class="flex mb-4">
-                            <img src="{{ asset('media/temp/') }}/{{ JWTAuth::toUser(JWTAuth::getToken())->foto_usuario }}" alt="" class="foto-80 rounded-circle">
+                            <img src="{{ env('APP_URL').'/storage/temp' }}/{{ JWTAuth::toUser(JWTAuth::getToken())->foto_usuario }}" alt="" class="foto-80 rounded-circle">
                             <div class="campo-foto-usuario">
                                 <p class="font-w600 mb-2">Foto do usuário</p>
-                                <button class="btn btn-cinza">Alterar foto</button>
+                                <input type="file" name="image" class="btn btn-cinza" />
                             </div>
                         </div>
                         <div class="form-group">

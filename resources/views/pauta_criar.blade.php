@@ -70,9 +70,8 @@
                                 <select name='estagio_compra'  class="form-control form-control-alt">
                                     <option value="0" selected disabled>Selecione o estágio</option>
                                     <option value="1"  >Conhecimento</option>
-                                    <option value="2"  >Descoberta</option>
-                                    <option value="3"  >Aquisição</option>
-                                    <option value="4"  >Recorrência</option>
+                                    <option value="2"  >Considereção</option>
+                                    <option value="3"  >Decisão</option>
                                 </select>
                             </div>
                         </div>

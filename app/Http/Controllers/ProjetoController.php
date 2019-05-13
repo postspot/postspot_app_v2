@@ -54,6 +54,8 @@ class ProjetoController extends Controller
                 $p->save();
             }
 
+            
+
             //criar novo projeto
             $projeto = new Projeto;
             $info = $request->all();
@@ -108,6 +110,7 @@ class ProjetoController extends Controller
     public function update(Request $request, $id)
     {
         try{
+
             $projeto = Projeto::where('id_projeto', $id)->first();
             $info = $request->all();
             $projeto->fill($info);

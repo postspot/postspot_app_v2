@@ -65,12 +65,9 @@
                     
                     if($t->etapa == 0)
                         $t->etapa = "Salva";
-                    if($t->etapa == 1)
-                        $t->etapa = "Solicitada";
-                    if($t->etapa == 2)
-                        $t->etapa = "Produzida";
-                    if($t->etapa == 5)
-                        $t->etapa = "Concluída";
+                    if($t->etapa > 0)
+                        $t->etapa = "Concluida";
+                   
                 ?>
                 <tr>
                     <td class="font-w600 link-color">

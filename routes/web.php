@@ -59,11 +59,11 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('/pauta/criar'                       ,       'TarefaController@indexCriar');
 
      //SPRINT 7 - CONTEÚDOS
-     Route::get('/conteudos'                       ,       'TarefaController@indexconteudos');
+     Route::get('/conteudos'                        ,       'TarefaController@indexconteudos');
      Route::get('/conteudos/filtro/{id}'            ,       'TarefaController@indexconteudosfiltro');
-     Route::view('/conteudo/detalhes', 'conteudo_detalhes');
-     Route::view('/conteudo/detalhes-edicao', 'conteudo_detalhes_editar');
-     Route::view('/conteudo/detalhes-pauta', 'conteudo_detalhes_pauta');
+     Route::get('/conteudo/detalhes/{id}'           ,       'TarefaController@conteudodetalhes');
+     Route::get('/conteudo/detalhes/editar/{id}'    ,       'TarefaController@conteudodetalheseditar');
+     Route::view('/conteudo/detalhes-pauta'         ,       'conteudo_detalhes_pauta');
     
    
 });

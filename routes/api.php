@@ -35,7 +35,7 @@ Route::put('atualiza_negocio/{id_estrategia}'       ,       'EstrategiaControlle
 Route::put('atualiza_tom/{id_estrategia}'           ,       'EstrategiaController@updatetom');
 
 //PERFIL
-Route::put('updateperfil/{id}'                      ,       'UserController@updateperfil');
+Route::post('updateperfil/{id}'                      ,       'UserController@updateperfil');
 Route::put('updatesenha/{id}'                       ,       'UserController@alterasenha');
 
 //PERSONA
