@@ -63,12 +63,12 @@ Route::group(['middleware' => ['jwt.verify']], function() {
      Route::get('/conteudos/filtro/{id}'            ,       'TarefaController@indexconteudosfiltro');
      Route::get('/conteudo/detalhes/{id}'           ,       'TarefaController@conteudodetalhes');
      Route::get('/conteudo/detalhes/editar/{id}'    ,       'TarefaController@conteudodetalheseditar');
-     Route::view('/conteudo/detalhes-pauta'         ,       'conteudo_detalhes_pauta');
+     Route::view('/conteudo/detalhes-pauta/{id}'    ,       'conteudo_detalhes_pauta');
     
    
 });
 
-//Route::view('/boas_vindas'              ,       '/mails/boas_vindas');
+Route::view('/boas_vindas'              ,       '/mails/conteudo_aprovar');
 //Route::view('/esqueceu_senha'           ,       '/mails/esqueceu_senha');
 //Route::view('/confirma_recupera_senha'  ,       '/mails/confirma_recupera_senha');
 

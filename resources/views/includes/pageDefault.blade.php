@@ -31,6 +31,7 @@
         @yield('css_before')
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,600">
         <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
         <link rel="stylesheet" id="css-theme" href="{{ asset('css/dashmix.css') }}">
@@ -198,6 +199,7 @@
 
         <!-- Laravel Scaffolding JS -->
         <script src="{{ asset('js/laravel.app.js') }}"></script>
+        <script src="{{ asset('js/starts.min.js') }}"></script>
 
         
         <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
@@ -218,6 +220,19 @@
                         ['para', ['ul', 'ol', 'paragraph']],
                         ['height', ['height']]
                     ]
+                });
+
+
+                $('.estrelas').stars({
+                    stars: 5,
+                    value: 0,
+                    color: '#E4AD22',
+                    emptyIcon  : 'fa-star-o',
+                    filledIcon : 'fa-star',
+
+                    click: function(index) {
+                        $("#inputAvaliacao").val(index);
+                    }
                 });
             });
         </script>

@@ -64,7 +64,6 @@ composer.phar
 
 /node_modules
 /vendor
-vendor/*
 
 
 .env
