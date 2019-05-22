@@ -44,7 +44,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Persona</label>
-                                <select name='id_persona' class="form-control form-control-alt">
+                                <select required name='id_persona' class="form-control form-control-alt">
                                     <option value="0" selected disabled>Selecione a persona</option>
                                     <?php
                                     $user = JWTAuth::toUser(JWTAuth::getToken());
@@ -60,14 +60,14 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Palavra-chave foco</label>
-                                <input name='palavra_chave'  type="text" class="form-control form-control-alt" placeholder="Insira a palavra chave" value="">
+                                <input required name='palavra_chave'  type="text" class="form-control form-control-alt" placeholder="Insira a palavra chave" value="">
                             </div>
                         </div>
 
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Estágio da jornada</label>
-                                <select name='estagio_compra'  class="form-control form-control-alt">
+                                <select required name='estagio_compra'  class="form-control form-control-alt">
                                     <option value="0" selected disabled>Selecione o estágio</option>
                                     <option value="1"  >Conhecimento</option>
                                     <option value="2"  >Considereção</option>
@@ -78,7 +78,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Formato</label>
-                                <select name='id_tipo'  class="form-control form-control-alt">
+                                <select required name='id_tipo'  class="form-control form-control-alt">
                                     <option value="0" selected disabled>Selecione o formato</option>
                                     @foreach($tipos as $t)
                                     <option value="{{ $t->id_tipo }}">{{ $t->nome_tipo }} </option>
@@ -90,43 +90,45 @@
                         <div class='col-12'>
                             <div class="form-group">
                                 <label>Como este conteúdo irá ajudar a persona</label>
-                                <textarea name='briefing_tarefa'  class="form-control form-control-alt" rows="7" placeholder="Aqui você direciona como o conteúdo deve ser escrito. Detalhe como esse conteúdo deve ajudar a persona em questão. Inclua todas as informações necessárias para construção do texto de acordo com sua estratégia de conteúdo."></textarea>
+                                <textarea required name='briefing_tarefa'  class="form-control form-control-alt" rows="7" placeholder="Aqui você direciona como o conteúdo deve ser escrito. Detalhe como esse conteúdo deve ajudar a persona em questão. Inclua todas as informações necessárias para construção do texto de acordo com sua estratégia de conteúdo."></textarea>
                             </div>
                         </div>
                         <div class="col-6">
                             
                             <div class="form-group">
                                 <label>Tamanho</label>
-                                <select name='tamanho'  class="form-control form-control-alt">
+                                <select required name='id_tamanho'  class="form-control form-control-alt">
                                     <option value="0" selected disabled>Selecione o tamanho</option>
-                                    <option value="1"  >Tamanho 1</option>
-                                    <option value="2"  >Tamanho 2</option>
-                                    <option value="3"  >Tamanho 3</option>
+                                    <option value="1"  > 200 palavras</option>
+                                    <option value="2"  > 500 palavras</option>
+                                    <option value="3"  > 1000 palavras</option>
+                                    <option value="4"  > 2000 palavras</option>
+                                    <option value="5"  > 4000 palavras</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Data de entrega</label>
-                                <input name='data_entrega'  type="text" class="form-control form-control-alt" placeholder="dd/mm/yyyy">
+                                <input required name='data_entrega'  type="text" class="form-control form-control-alt" placeholder="dd/mm/yyyy">
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label>Título do conteúdo</label>
-                        <input name='nome_tarefa'  type="text" class="form-control form-control-alt" placeholder="Insira o título do conteúdo" value="">
+                        <input required name='nome_tarefa'  type="text" class="form-control form-control-alt" placeholder="Insira o título do conteúdo" value="">
                     </div>
                     <div class="form-group">
                         <label>Chamada para ação</label>
-                        <textarea name='tipo_cta'  class="form-control form-control-alt" rows="7" placeholder="Descreva a ação que quer que seu visitante faça após ler o conteúdo. Ex: Seguir sua empresa nas mídias sociais."></textarea>
+                        <textarea required name='tipo_cta'  class="form-control form-control-alt" rows="7" placeholder="Descreva a ação que quer que seu visitante faça após ler o conteúdo. Ex: Seguir sua empresa nas mídias sociais."></textarea>
                     </div>
                     <div class="form-group">
                         <label>Links</label>
-                        <textarea name='referencias'  class="form-control form-control-alt" rows="7" placeholder="Insira links de referẽncias de conteúdo."></textarea>
+                        <textarea required name='referencias'  class="form-control form-control-alt" rows="7" placeholder="Insira links de referẽncias de conteúdo."></textarea>
                     </div>
                     <div class="text-left">
-                        <button class="btn btn-secundario ml-2">Salvar</button>
+                        <button type="submit" class="btn btn-secundario ml-2">Salvar</button>
                     </div>
 
                 </div>

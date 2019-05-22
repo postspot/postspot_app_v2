@@ -29,6 +29,7 @@ class TarefaController extends Controller
     public function indexCriar()
     {
         $tipos = \App\TipoTarefa::get();
+        //$tipos->tamanhos = tamanho
 
         return view('pauta_criar',  ['tipos' => $tipos]);
     }
@@ -142,11 +143,7 @@ class TarefaController extends Controller
         } 
         catch (Exception $e) {
             Log::info(get_class($e)." | ".$e->getMessage());
-            return response()->json([
-                'title'=>'Erro desconhecido',
-                'message'=>'Erro ao cadastrar projeto.',
-                'exception'=>$e->getMessage()
-            ],500);
+            
         }
     }
 

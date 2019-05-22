@@ -41,12 +41,11 @@
             <div class="block block-bordered block-rounded">
                 <div class="block-content">
                     <div class="flex mb-4">
-                    <img src="{{ asset('media/temp/sem_foto.png') }}" alt="" class="foto-80 rounded-circle">
-                        <div class="campo-foto-usuario">
-                            
+                        <img src="{{ env('APP_URL').'/storage/temp' }}/{{ $persona->foto }}" alt="" class="foto-80 rounded-circle">
+                            <div class="campo-foto-usuario">
                             <p class="font-w600 mb-2">Avatar da persona</p>
-                            <button class="btn btn-secundario ml-2">Escolher avatar</button>
-                        </div>
+                                <input type="file" name="image" class="btn btn-cinza" />
+                            </div>
                     </div>
                     <div class="row">
                         

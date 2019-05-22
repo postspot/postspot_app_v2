@@ -35,6 +35,7 @@ class Tarefa extends Model
 		'id_persona',
 		'id_projeto',
 		'id_equipe',
+		'id_tamanho',
 		'id_tipo'
 	];
 

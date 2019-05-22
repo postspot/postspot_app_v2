@@ -19,6 +19,8 @@ class Persona extends Model
 		'data_cadastro'
 	];
 
+	protected $table = 'personas';
+
 	protected $fillable = [
 		'data_criacao',
 		'nome',

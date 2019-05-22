@@ -48,6 +48,24 @@
                         </thead>
                         <tbody>
                             @foreach($personas as $p)
+                            <?php
+                            if($p->cargo == 1)
+                                $p->cargo = "Sócio";
+                            else if($p->cargo == 2)
+                                $p->cargo = "Diretor";
+                            else if($p->cargo == 3)
+                                $p->cargo = "Gerente";
+                            else if($p->cargo == 4)
+                                $p->cargo = "Coordenador";
+                            else if($p->cargo == 5)
+                                $p->cargo = "Analista";
+                            else if($p->cargo == 6)
+                                $p->cargo = "Assistente";
+                            else if($p->cargo == 7)
+                                $p->cargo = "Estagiário";
+                            else if($p->cargo == 8)
+                                $p->cargo = "Outro";
+                            ?>
                             <tr>
                                 <td class="font-w600 link-color">
                                     {{ $p->nome }}
