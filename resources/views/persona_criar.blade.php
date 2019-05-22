@@ -40,15 +40,16 @@
                     <div class="flex mb-4">
                         <img src="{{ asset('media/temp/sem_foto.png') }}" alt="" class="foto-80 rounded-circle">
                         <div class="campo-foto-usuario">
-                            <p class="font-w600 mb-2">Avatar da persona</p>
-                            <button class="btn btn-secundario ml-2">Escolher avatar</button>
+                            <p class="font-w600 mb-2">Foto do usuário</p>
+                            <input type="file" name="image" class="btn btn-cinza" />
                         </div>
+                        
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Nome*</label>
-                                <input name='nome' required type="text" class="form-control form-control-alt" placeholder="Informe seu nome">
+                                <input name='nome' required type="text" class="form-control form-control-alt" placeholder="Informe o nome da persona">
                             </div>
                         </div>
                         <div class="col-6">
@@ -57,7 +58,7 @@
                                 <input name='idade' required type="number" class="form-control form-control-alt" placeholder="Insira aqui">
                             </div>
                             <div class="form-group">
-                                <label>Cargo</label>
+                                <label>Função</label>
                                 <select name='cargo' required class="form-control form-control-alt">
                                     <option value="1">Sócio</option>
                                     <option value="2">Diretor</option>
@@ -83,7 +84,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Segmento</label>
-                                <select required class="form-control form-control-alt" name="segmento_projeto">
+                                <select required class="form-control form-control-alt" name="segmento">
                                 <option value='Agência e Serviços criativos' > Agência e Serviços criativos</option>
                                 <option value='Agricultura e Serviços de alimentação' > Agricultura e Serviços de alimentação</option>
                                 <option value='Arquitetura e Construção'> Arquitetura e Construção</option>

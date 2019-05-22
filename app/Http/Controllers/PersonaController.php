@@ -51,7 +51,7 @@ class PersonaController extends Controller
 
             $user = JWTAuth::toUser(JWTAuth::getToken());
 
-            \Validator::make($request->all(), $this->rules(), $this->messages())->validate();
+            //Validator::make($request->all(), $this->rules(), $this->messages())->validate();
 
             $ativo = $user->projetos()->where('projeto_ativo','=','1')->first();
 
@@ -68,7 +68,7 @@ class PersonaController extends Controller
 
         } 
         catch (Exception $e) {
-            //Log::info(get_class($e)." | ".$e->getMessage());
+            \Log::info(get_class($e)." | ".$e->getMessage());
             return view('persona_criar',  ['error' => 'Falha ao criar os persona, verifique os dados e tente novamente!']);
         }
     }
