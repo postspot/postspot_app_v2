@@ -43,7 +43,7 @@ class CreateUsuariosTable extends Migration
             $table->text('recupera_senha')->nullable()->default(null);
             $table->date('nascimento_usuario')->nullable()->default(null);
             $table->string('telefone_usuario', 15)->nullable()->default(null);
-            $table->dateTime('cadastro_usuario');
+            $table->dateTime('cadastro_usuario')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->softDeletes();
             $table->timestamps();
         });
