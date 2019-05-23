@@ -27,6 +27,6 @@ class Publicacao extends Model
 
 	public function tarefa()
 	{
-		return $this->belongsTo(\App\Models\Tarefa::class, 'id_tarefa');
+		return $this->belongsTo(\App\Tarefa::class, 'id_tarefa');
 	}
 }

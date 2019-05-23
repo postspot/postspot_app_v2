@@ -16,16 +16,9 @@
             <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="nav-item ml-auto d-none d-md-flex align-items-center">
-                            <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn d-none d-lg-inline-block mb-1 btn-cinza">
+                            <button {{ $pauta->log->etapa != 10? "disabled" : "" }} onclick="form_submit()" type="button" data-toggle="modal" data-target="#modal-delete" class="btn d-none d-lg-inline-block mb-1 btn-cinza">
                                  Salvar Conteúdo
                             </button>
-                    </li>
-                    <li class="nav-item ml-auto d-none d-md-flex align-items-center">
-                        
-                        <button type="button" data-toggle="modal" data-target="#modal-sure" class="btn d-none d-lg-inline-block mb-1 btn-secundario">
-                                Finalizar Redação
-                        </button>
-                        
                     </li>
                 </ol>
             </nav>
@@ -48,11 +41,28 @@
         <div class="col-md-6 col-sm-12">
             <div class="block block-bordered block-rounded">
                 <div class="block-content">
-                    O que é marketing digital?
+                    {{ $pauta->nome_tarefa }}
                 </div>
             </div>
             <div class="font-size-sm">
-                <textarea class="block block-bordered block-rounded" id="summernote" name="editordata"></textarea>
+                <form method="POST" id="form_publicacao" action="/api/criar_publicacao">
+                    <input type="hidden" name="id_tarefa" value="{{ $pauta->id_tarefa }}" />
+                    @if ($pauta->log->etapa == 10)
+                        <textarea class="block block-bordered block-rounded" id="summernote" name="texto_publicacao">
+                            {{isset($pauta->publicacoes->id)? $pauta->publicacoes->texto_publicacao:''}}
+                        </textarea>
+                    @else
+                        <div class="block-content">
+                            <h5 class="text-center text-muted">Conteúdo em produção</h5>
+                        </div>
+                    @endif
+                    
+                    <script>
+                        function form_submit() {
+                            document.getElementById("form_publicacao").submit();
+                        }
+                    </script>
+                </form>
             </div>
         </div>
         <div class="col-md-3 col-sm-12">

@@ -22,9 +22,8 @@
                     <li class="nav-item ml-auto d-none d-md-flex align-items-center">
                         
                         <button type="button" data-toggle="modal" data-target="#modal-aprovar" class="btn d-none d-lg-inline-block mb-1 btn-secundario">
-                                Finalizar Redação
+                                Aprovar Conteúdo
                         </button>
-                        
                     </li>
                 </ol>
             </nav>
@@ -52,7 +51,7 @@
             </div>
             <div class="block block-bordered block-rounded">
                 <div class="block-content">
-                    {{ isset($pauta->publicacoes) ? $pauta->publicacoes : "Conteúdo em produção"  }}
+                    {{ isset($pauta->publicacoes->id) ? $pauta->publicacoes->texto_publicacao : "Conteúdo em produção"  }}
                 </div>
             </div>
         </div>

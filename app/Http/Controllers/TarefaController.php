@@ -92,7 +92,7 @@ class TarefaController extends Controller
         $log = new LogTarefa;
 
         $log->status = "1";
-        $log->etapa = "1";
+        $log->etapa = "8";
         $log->id_tarefa = $id;
         $log->id_usuario = $user->id;
 
@@ -188,7 +188,8 @@ class TarefaController extends Controller
 
         //dd($pauta->log);
         $pauta->comentarios = $pauta->comentarios()->join('usuarios', 'usuarios.id', 'comentarios.id_usuario')->get();
-        $pauta->publicacoes = $pauta->publicacoes()->first();
+        if ($pauta->log->etapa == 10)
+            $pauta->publicacoes = $pauta->publicacoes()->orderBy('status_publicacao','desc')->first();
         
         return view('conteudo_detalhes',  ['pauta' => $pauta]);
         
@@ -203,7 +204,8 @@ class TarefaController extends Controller
 
         //dd($pauta->log);
         $pauta->comentarios = $pauta->comentarios()->join('usuarios', 'usuarios.id', 'comentarios.id_usuario')->get();
-        $pauta->publicacoes = $pauta->publicacoes()->first();
+        if ($pauta->log->etapa == 10)
+            $pauta->publicacoes = $pauta->publicacoes()->orderBy('status_publicacao','desc')->first();
         
         return view('conteudo_detalhes_editar',  ['pauta' => $pauta]);
         

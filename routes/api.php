@@ -49,6 +49,8 @@ Route::put('editar_pauta/{id}'                      ,       'TarefaController@up
 Route::delete('deletar_pauta/{id}'                  ,       'TarefaController@destroy');
 Route::post('solicitar_pauta/{id}'                  ,       'TarefaController@solicitar');
 
+//PUBLICACOES
+Route::post('criar_publicacao'                      ,       'PublicacaoController@store');
 
 Route::get('open', 'DataController@open');
 
