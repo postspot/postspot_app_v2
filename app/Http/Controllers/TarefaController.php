@@ -100,7 +100,7 @@ class TarefaController extends Controller
 
         $tarefas = $user->log_tarefas()->join('tarefas', 'tarefas.id_tarefa', 'log_tarefas.id_tarefa')->join('personas', 'tarefas.id_persona', 'personas.id_persona')->join('tipo_tarefa','tarefas.id_tipo','tipo_tarefa.id_tipo')->get();
 
-        return view('pautas',  ['tarefas' => $tarefas]);
+        return redirect('/pauta');
 
 
     }

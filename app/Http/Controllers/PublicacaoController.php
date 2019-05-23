@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Publicacao;
 use App\LogTarefa;
+use App\Tarefa;
 use Illuminate\Http\Request;
 use JWTAuth;
 
@@ -38,6 +39,39 @@ class PublicacaoController extends Controller
         }
         catch (\Throwable $e) {
             return view('conteudo_detalhes_editar',  ['pauta' => $request], ['error' => 'Falha ao atualizar os dados']);
+        }
+    }
+
+    public function aprovar(Request $request) {
+        try{
+            $user = JWTAuth::toUser(JWTAuth::getToken());
+
+            $info = $request->all();
+
+            $pauta = Tarefa::find($info['id_tarefa']);
+            $pauta->nota_tarefa = $info['nota_tarefa'];
+            $pauta->consideracoes_gerais = $info['consideracoes_gerais'];
+            $pauta->save();
+
+            $publicacao = $pauta->publicacoes()->where('status_publicacao','1')->get()->last();
+            $publicacao->id = null;
+            $publicacao->save();
+
+            $pauta->log_tarefas()->update(['status'=>'0']);
+            $log = new LogTarefa;
+            $log->status = "1";
+            $log->etapa = "13";
+            $log->id_tarefa = $pauta->id_tarefa;
+            $log->id_usuario = $user->id;
+            $log->save();
+
+            $pauta->log = $pauta->log_tarefas()->where('status', '=', '1')->first();
+
+            return view('conteudo_detalhes',  ['pauta' => $pauta], ['message' => 'Dados atualizados com sucesso!']);
+        }
+        catch (\Throwable $e) {
+            return dd($e);
+            return view('conteudo_detalhes',  ['pauta' => $request], ['error' => 'Falha ao atualizar os dados']);
         }
     }
 }

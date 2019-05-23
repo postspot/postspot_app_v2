@@ -62,13 +62,13 @@
                 <?php
                 if($pauta->log->etapa == 8)
                      $pauta->log->etapa = "Em produção";
-                if($pauta->log->etapa == 9)
-                    $pauta->log->etapa = "Revisão";
                 if($pauta->log->etapa == 10)
-                    $pauta->log->etapa = "Em Aprovação";
+                    $pauta->log->etapa = "Revisão";
                 if($pauta->log->etapa == 11)
-                    $pauta->log->etapa = "Em Ajuste";
+                    $pauta->log->etapa = "Em Aprovação";
                 if($pauta->log->etapa == 12)
+                    $pauta->log->etapa = "Em Ajuste";
+                if($pauta->log->etapa == 13)
                     $pauta->log->etapa = "Concluída";
                 ?>
 
@@ -143,7 +143,7 @@
 <div class="modal fade" id="modal-aprovar" tabindex="-1" role="dialog" aria-labelledby="modal-aprovar" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form id="form_delete" action="/api/deletar_pauta/" method="POST">
+            <form id="form_aprovacao" action="/api/aprovar_conteudo/" method="POST">
                 <div class="block block-transparent mb-0">
                     <div class="block-header background-cinza">
                         <h3 class="block-title">Aprovação do conteúdo</h3>
@@ -160,10 +160,12 @@
                             <div class="estrelas"></div>
                             <p class="p-estrela text-right">Muito satisfeito</p>
                         </div>
+                        
                         <p>Por favor, deixe um comentário sobre o conteúdo recebido.</p>
-                        <textarea required class="form-control form-control-alt" rows="5" placeholder="Escreva seu comentário aqui."></textarea>
+                        <textarea required name="consideracoes_gerais" class="form-control form-control-alt" rows="5" placeholder="Escreva seu comentário aqui."></textarea>
                     </div>
-                    <input type="hidden" name="avaliacao" id="inputAvaliacao">
+                    <input name="id_tarefa" type="hidden" value="{{ $pauta->id_tarefa }}" />
+                    <input name="nota_tarefa" type="hidden" id="inputAvaliacao" />
                     <div class="block-content block-content-full text-right bg-light">
                         <button type="submit" class="btn btn-sm btn-secundario">Aprovar conteúdo</button>
                         <button type="button" class="btn btn-sm btn-cinza" data-dismiss="modal">Cancelar</button>
