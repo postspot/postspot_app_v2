@@ -2,11 +2,11 @@
 
 @section('content')
 
-
 <div class="bg-body-light">
     <div class="content content-full">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
             <h1 class="flex-sm-fill font-size-h3 font-w400 mt-2 mb-0 mb-sm-2">{{ $pauta->nome_tarefa }}</h1>
+            @if ($pauta->log->etapa == 10)
             <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="nav-item ml-auto d-none d-md-flex align-items-center">
@@ -27,6 +27,7 @@
                     </li>
                 </ol>
             </nav>
+            @endif
         </div>
     </div>
 </div>
@@ -44,6 +45,16 @@
             </ul>
         </div>
         <div class="col-md-6 col-sm-12">
+            @if(isset($message))
+                <div class="mb-3 alert alert-success" role="alert">
+                    {{ $message }}
+                </div>        
+            @endif
+            @if(isset($error))
+                <div class="mb-3 alert alert-danger" role="alert">
+                    {{ $error }}
+                </div>                        
+            @endif
             <div class="block block-bordered block-rounded">
                 <div class="block-content">
                 {{ $pauta->nome_tarefa }}
