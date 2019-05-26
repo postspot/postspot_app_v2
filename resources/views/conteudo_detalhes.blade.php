@@ -95,9 +95,12 @@
                     
                 </div>
                 <div class="font-size-sm p-2">
-                    <form action="db_social_compact.html" method="POST" onsubmit="return false;">
+                    <form action="api/insere_comentario" method="POST" onsubmit="return false;">
                         <input type="hidden" name='id_tarefa' value="{{ $pauta->id_tarefa }}">
                         <input type="text" class="form-control form-control-alt" placeholder="Escrever comentário">
+                        <button type="button" class="btn-block-option btn btn-secundario" data-dismiss="modal" aria-label="Close">
+                                <i class="fa fa-fw fa-send"></i>
+                        </button>
                     </form>
                 </div>
             </div>

@@ -53,6 +53,9 @@ Route::post('solicitar_pauta/{id}'                  ,       'TarefaController@so
 Route::post('criar_publicacao'                      ,       'PublicacaoController@store');
 Route::post('aprovar_conteudo'                      ,       'PublicacaoController@aprovar');
 
+//COMENTARIO
+Route::post('insere_comentario'                     ,       'ComentarioController@store');
+
 Route::get('open', 'DataController@open');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
