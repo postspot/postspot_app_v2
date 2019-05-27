@@ -9,7 +9,7 @@ use JWTAuth;
 use Exception;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 
-class PersonaController extends Controller
+class ComentarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,11 +20,11 @@ class PersonaController extends Controller
     {
         $user = JWTAuth::toUser(JWTAuth::getToken());
 
-        $personas = $user->projetos()->join('personas', 'personas.id_projeto', 'projetos.id_projeto')->select('personas.*')->where('projeto_ativo', '1')->get();
+        $comentarios = $user->projetos()->join('comentarios', 'comentarios.id_projeto', 'projetos.id_projeto')->select('comentarios.*')->where('projeto_ativo', '1')->get();
 
-       // dd($personas);
+       // dd($comentarios);
 
-        return view('persona',  ['personas' => $personas]);
+        return view('comentario',  ['comentarios' => $comentarios]);
     }
     
 
@@ -48,6 +48,8 @@ class PersonaController extends Controller
     {
         try {
 
+           // dd($request);
+
             $user = JWTAuth::toUser(JWTAuth::getToken());
 
             //criar novo projeto
@@ -56,15 +58,17 @@ class PersonaController extends Controller
 
             $comentario->fill($info);
 
+            $comentario->id_usuario = $user->id;
+
             $comentario->save();
 
-            dd($comentario);
-            return \Illuminate\Support\Facades\Redirect::to('/persona')->withMessage('mensagem');  
+            //dd($comentario);
+            return \Illuminate\Support\Facades\Redirect::to('/conteudo/detalhes/'.$request->id_tarefa)->withMessage('mensagem');  
 
         } 
         catch (Exception $e) {
             \Log::info(get_class($e)." | ".$e->getMessage());
-            return view('persona_criar',  ['error' => 'Falha ao criar os persona, verifique os dados e tente novamente!']);
+            return view('conteudo_detalhes',  ['error' => 'Falha ao criar os comentario, verifique os dados e tente novamente!']);
         }
     }
 
@@ -77,16 +81,16 @@ class PersonaController extends Controller
     public function show($id)
     {
         $user = JWTAuth::toUser(JWTAuth::getToken());
-        $persona = Persona::where('id_persona',$id)->first();
+        $comentario = comentario::where('id_comentario',$id)->first();
         
-        return view('persona_editar',  ['persona' => $persona]);
+        return view('comentario_editar',  ['comentario' => $comentario]);
     }
     public function showdetail($id)
     {
         $user = JWTAuth::toUser(JWTAuth::getToken());
-        $persona = Persona::where('id_persona',$id)->first();
+        $comentario = comentario::where('id_comentario',$id)->first();
         
-        return view('persona_detalhes',  ['persona' => $persona]);
+        return view('comentario_detalhes',  ['comentario' => $comentario]);
     }
 
     /**
@@ -110,17 +114,17 @@ class PersonaController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $persona = Persona::where('id_persona', $id)->first();
+            $comentario = comentario::where('id_comentario', $id)->first();
             $info = $request->all();
-            $persona->fill($info);
+            $comentario->fill($info);
             
-            $persona->save();
+            $comentario->save();
 
-            return view('persona_editar',  ['persona' => $persona], ['message' => 'Dados atualizados com sucesso!']);
+            return view('comentario_editar',  ['comentario' => $comentario], ['message' => 'Dados atualizados com sucesso!']);
         }
         catch (\Throwable $e) {
 
-            return view('persona_editar',  ['persona' => $request], ['error' => 'Falha ao atualizar os dados']);
+            return view('comentario_editar',  ['comentario' => $request], ['error' => 'Falha ao atualizar os dados']);
         }
     }
 
@@ -132,11 +136,11 @@ class PersonaController extends Controller
      */
     public function destroy($id)
     {
-        $persona = Persona::where('id_persona', $id)->first();
+        $comentario = comentario::where('id_comentario', $id)->first();
 
-        $persona->delete();
+        $comentario->delete();
 
-        return redirect('persona');
+        return redirect('comentario');
     }
 
     private function rules()

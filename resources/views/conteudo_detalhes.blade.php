@@ -41,7 +41,7 @@
             <ul class="menu-lateral">
                 <li class="active"><a href="/conteudo/detalhes/{{ $pauta->id_tarefa }}">Visualizar</a></li>
                 <li><a href="/conteudo/detalhes/editar/{{ $pauta->id_tarefa }}">Editar</a></li>
-                <li><a href="/pauta/detalhes/{{ $pauta->id_tarefa }}">Pauta</a></li>
+                <li><a href="/conteudo/detalhes/pauta/{{ $pauta->id_tarefa }}">Pauta</a></li>
             </ul>
         </div>
         <div class="col-md-6 col-sm-12">
@@ -106,10 +106,10 @@
                     
                 </div>
                 <div class="font-size-sm p-2">
-                    <form action="api/insere_comentario" method="POST" onsubmit="return false;">
+                    <form action="/api/insere_comentario" method="POST">
                         <input type="hidden" name='id_tarefa' value="{{ $pauta->id_tarefa }}">
-                        <input type="text" class="form-control form-control-alt" placeholder="Escrever comentário">
-                        <button type="button" class="btn-block-option btn btn-secundario" data-dismiss="modal" aria-label="Close">
+                        <input type="text" name='comentario' class="form-control form-control-alt" placeholder="Escrever comentário">
+                        <button type="submit" class="btn-block-option btn btn-secundario" data-dismiss="modal" aria-label="Close">
                                 <i class="fa fa-fw fa-send"></i>
                         </button>
                     </form>

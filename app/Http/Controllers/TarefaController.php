@@ -210,6 +210,24 @@ class TarefaController extends Controller
         return view('conteudo_detalhes_editar',  ['pauta' => $pauta]);
         
     }
+    public function conteudodetalhespauta($id)
+    {
+
+        $user = JWTAuth::toUser(JWTAuth::getToken());
+        $pauta = Tarefa::where('id_tarefa',$id)->first();
+
+        $pauta->log = $pauta->log_tarefas()->where('status', '=', '1')->first();
+        $pauta->persona = $user->projetos()->join('personas', 'personas.id_projeto', 'projetos.id_projeto')->select('personas.*')->where('projeto_ativo', '1')->get();
+        $pauta->tipos = $tipos = \App\TipoTarefa::get();
+
+        //dd($pauta->log);
+        $pauta->comentarios = $pauta->comentarios()->join('usuarios', 'usuarios.id', 'comentarios.id_usuario')->get();
+        if ($pauta->log->etapa == 10)
+            $pauta->publicacoes = $pauta->publicacoes()->orderBy('status_publicacao','desc')->first();
+        
+        return view('conteudo_detalhes_pauta',  ['pauta' => $pauta]);
+        
+    }
 
     /**
      * Show the form for editing the specified resource.
