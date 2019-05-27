@@ -241,11 +241,10 @@ class TarefaController extends Controller
 
             $pauta->persona = $user->projetos()->join('personas', 'personas.id_projeto', 'projetos.id_projeto')->select('personas.*')->where('projeto_ativo', '1')->get();
             $pauta->tipos = $tipos = \App\TipoTarefa::get();
-
+            
             return view('pauta_editar',  ['pauta' => $pauta], ['message' => 'Dados atualizados com sucesso!']);
         }
         catch (\Throwable $e) {
-
             return view('pauta_editar',  ['pauta' => $request], ['error' => 'Falha ao atualizar os dados']);
         }
     }

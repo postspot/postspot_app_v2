@@ -10,7 +10,7 @@
             <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="nav-item ml-auto d-none d-md-flex align-items-center">
-                        <a href="pauta/criar">
+                        <a href="/pauta/criar">
                             <button type="button" class="btn d-none d-lg-inline-block mb-1 btn-secundario">
                                 Criar pauta
                             </button>
