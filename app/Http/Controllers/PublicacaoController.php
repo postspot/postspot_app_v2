@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Publicacao;
 use App\LogTarefa;
 use App\Tarefa;
+use App\Usuario;
 use Illuminate\Http\Request;
 use JWTAuth;
 
@@ -74,6 +75,17 @@ class PublicacaoController extends Controller
             $log->save();
 
             $pauta->log = $pauta->log_tarefas()->where('status', '=', '1')->first();
+
+            $solicitante = $pauta->log_tarefas()->where('etapa','=','0')->first()->usuario;
+
+            Mail::send('mails.conteudo_aprovado', [
+                'email'=> $solicitante->email,
+            ], function($m) use($request){
+                $m->from('josebrunoom@gmail.com'. 'Postspot');
+                $m->to($solicitante->email);
+                $m->subject('Conteúdo aprovado');
+            });
+
 
             return view('conteudo_detalhes',  ['pauta' => $pauta], ['message' => 'Dados atualizados com sucesso!']);
         }
