@@ -31,11 +31,11 @@ class LogTarefa extends Model
 
 	public function tarefa()
 	{
-		return $this->belongsTo(\App\Models\Tarefa::class, 'id_tarefa');
+		return $this->belongsTo(\App\Tarefa::class, 'id_tarefa');
 	}
 
 	public function usuario()
 	{
-		return $this->belongsTo(\App\Models\Usuario::class, 'id_usuario');
+		return $this->belongsTo(\App\Usuario::class, 'id_usuario');
 	}
 }

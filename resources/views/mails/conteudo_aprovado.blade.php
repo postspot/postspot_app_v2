@@ -9,15 +9,15 @@
             </tr>
             <tr>
                 <td height="70" style="vertical-align: middle;padding: 15px 40px;">
-                    Andress, confira as informações do conteúdo:<br><br>
+                    Parabéns, {{ $nome }}! Confira as informações do conteúdo:<br><br>
                     
-                    <b>Projeto:</b> Ubound<br>
-                    <b>Título do conteúdo:</b> O que é marketing Digital? <br>
-                    <b>Formato:</b> Blog Post<br>
-                    <b>Tamanho:</b> 500 palavras <br>
-                    <b>Avaliação:</b> 5 estrelas Comentário sobre a avaliação: <br>
-                    <b>Comentário sobre a Avaliação:</b> Gostei muito do conteúdo! <br>
-                    <b>Aprovado em:</b> 01 de mai de 2019, 21:35<br>
+                    <b>Projeto:</b> {{$projeto}}<br>
+                    <b>Título do conteúdo:</b> {{$titulo}} <br />
+                    <b>Formato:</b> {{ $formato }}<br />
+                    <b>Tamanho:</b> {{ $tamanho }}<br />
+                    <b>Avaliação:</b> {{ $avaliacao }}<br />
+                    <b>Comentário sobre a Avaliação:</b> {{ $comentario }} <br />
+                    <b>Aprovado em:</b> {{ $aprovado }}<br />
     
                     <a style="background-color: #1A7D8B;color: #fff;border-radius: 2px;padding: 11px 24px;display: table;margin: 0px auto;text-decoration: none;margin-top: 45px;font-size: 16px;" href="">Avaliar conteúdo</a>
                     

@@ -7,6 +7,7 @@ use App\LogTarefa;
 use App\Tarefa;
 use App\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use JWTAuth;
 
 class PublicacaoController extends Controller
@@ -78,18 +79,29 @@ class PublicacaoController extends Controller
 
             $solicitante = $pauta->log_tarefas()->where('etapa','=','0')->first()->usuario;
 
-            Mail::send('mails.conteudo_aprovado', [
-                'email'=> $solicitante->email,
-            ], function($m) use($request){
-                $m->from('josebrunoom@gmail.com'. 'Postspot');
-                $m->to($solicitante->email);
-                $m->subject('Conteúdo aprovado');
-            });
-
+            try {
+                setlocale (LC_TIME, 'pt_BR');
+                Mail::send('mails.conteudo_aprovado', [
+                    'email'=> $solicitante->email,
+                    'nome'=>$solicitante->nome,
+                    'projeto'=>$pauta->projeto->nome,
+                    'titulo'=>$pauta->nome_tarefa,
+                    'formato'=>$pauta->tipo_tarefa->nome_tipo,
+                    'tamanho'=>$pauta->tamanho->tamanho . ' palavras',
+                    'avaliacao'=>$pauta->nota_tarefa . ' estrelas',
+                    'comentario'=>$pauta->consideracoes_gerais,
+                    'aprovado'=>\Date::now()->format('d \\d\\e M \\d\\e Y, H\\hi')
+                ], function($m) use($solicitante) {
+                    $m->from('josebrunoom@gmail.com'. 'Postspot');
+                    $m->to($solicitante->email);
+                    $m->subject('Conteúdo aprovado');
+                });   
+            } catch (Exception $e) { }
 
             return view('conteudo_detalhes',  ['pauta' => $pauta], ['message' => 'Dados atualizados com sucesso!']);
         }
         catch (\Throwable $e) {
+            dd($e);
             return view('conteudo_detalhes',  ['pauta' => $pauta], ['error' => 'Falha ao atualizar os dados']);
         }
     }

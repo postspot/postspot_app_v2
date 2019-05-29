@@ -49,6 +49,11 @@ class Tarefa extends Model
 		return $this->belongsTo(\App\Projeto::class, 'id_projeto');
 	}
 
+	public function tamanho()
+	{
+		return $this->belongsTo(\App\Tamanho::class, 'id_tamanho');
+	}
+
 	public function tipo_tarefa()
 	{
 		return $this->belongsTo(\App\TipoTarefa::class, 'id_tipo');
