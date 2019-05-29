@@ -187,7 +187,7 @@ class TarefaController extends Controller
         $pauta->log = $pauta->log_tarefas()->where('status', '=', '1')->first();
 
         //dd($pauta->log);
-        $pauta->comentarios = $pauta->comentarios()->join('usuarios', 'usuarios.id', 'comentarios.id_usuario')->get();
+        $pauta->comentarios = $pauta->comentarios()->join('usuarios', 'usuarios.id', 'comentarios.id_usuario')->orderBy('comentarios.data_criacao')->get();
         if ($pauta->log->etapa == 10)
             $pauta->publicacoes = $pauta->publicacoes()->orderBy('status_publicacao','desc')->first();
         
