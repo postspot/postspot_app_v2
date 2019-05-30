@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comentario extends Model
 {
+	use SoftDeletes;
+
     protected $primaryKey = 'id_comentario';
 	public $timestamps = false;
 

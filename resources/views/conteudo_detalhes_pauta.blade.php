@@ -21,6 +21,8 @@
                 <li><a href="/conteudo/detalhes/{{ $pauta->id_tarefa }}">Visualizar</a></li>
                 <li><a href="/conteudo/detalhes/editar/{{ $pauta->id_tarefa }}">Editar</a></li>
                 <li class="active"><a href="/conteudo/detalhes/pauta/{{ $pauta->id_tarefa }}">Pauta</a></li>
+                <li><a href="/conteudo/detalhes/historico/{{ $pauta->id_tarefa }}">Histórico</a></li>
+
             </ul>
         </div>
         <div class="col-md-6 col-sm-12">

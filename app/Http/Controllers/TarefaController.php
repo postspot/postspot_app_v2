@@ -192,8 +192,27 @@ class TarefaController extends Controller
             $pauta->publicacoes = $pauta->publicacoes()->orderBy('status_publicacao','desc')->first();
         
         return view('conteudo_detalhes',  ['pauta' => $pauta]);
+    }
+
+    public function conteudodetalheshistorico($id)
+    {
+
+        $user = JWTAuth::toUser(JWTAuth::getToken());
+        $pauta = Tarefa::where('id_tarefa',$id)->first();
+
+        $pauta->log = $pauta->log_tarefas()->where('status', '=', '1')->first();
+
+        //dd($pauta->log);
+        $pauta->comentarios = $pauta->comentarios()->join('usuarios', 'usuarios.id', 'comentarios.id_usuario')->orderBy('comentarios.data_criacao')->get();
+        if ($pauta->log->etapa == 10)
+            $pauta->publicacoes = $pauta->publicacoes()->orderBy('status_publicacao','desc')->first();
+        
+        $publicacoes = $pauta->publicacoes;
+
+        return view('conteudo_detalhes_historico',  ['pauta' => $pauta, 'publicacoes' => $publicacoes]);
         
     }
+
     public function conteudodetalheseditar($id)
     {
 

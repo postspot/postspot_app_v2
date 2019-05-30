@@ -39,13 +39,13 @@
     <div class="row">
         <div class="col-md-3 col-sm-12">
             <ul class="menu-lateral">
-                <li class="active"><a href="/conteudo/detalhes/{{ $pauta->id_tarefa }}">Visualizar</a></li>
+                <li><a href="/conteudo/detalhes/{{ $pauta->id_tarefa }}">Visualizar</a></li>
                 <li><a href="/conteudo/detalhes/editar/{{ $pauta->id_tarefa }}">Editar</a></li>
                 <li><a href="/conteudo/detalhes/pauta/{{ $pauta->id_tarefa }}">Pauta</a></li>
-                <li><a href="/conteudo/detalhes/historico/{{ $pauta->id_tarefa }}">Histórico</a></li>
+                <li class="active"><a href="/conteudo/detalhes/historico/{{ $pauta->id_tarefa }}">Histórico</a></li>
             </ul>
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-9 col-sm-12">
             @if(isset($message))
                 <div class="mb-3 alert alert-success" role="alert">
                     {{ $message }}
@@ -56,70 +56,26 @@
                     {{ $error }}
                 </div>                        
             @endif
-            <div class="block block-bordered block-rounded">
-                <div class="block-content">
-                {{ $pauta->nome_tarefa }}
-                </div>
-            </div>
-            <div class="block block-bordered block-rounded">
-                <div class="block-content">
-                    {{ isset($pauta->publicacoes->id) ? $pauta->publicacoes->texto_publicacao : "Conteúdo em produção"  }}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-12">
-            <div class="block block-bordered block-rounded p-3">
-                <h5>Status</h5>
-
-                <?php
-                if($pauta->log->etapa == 8)
-                     $pauta->log->etapa = "Em produção";
-                if($pauta->log->etapa == 10)
-                    $pauta->log->etapa = "Revisão";
-                if($pauta->log->etapa == 11)
-                    $pauta->log->etapa = "Em Aprovação";
-                if($pauta->log->etapa == 12)
-                    $pauta->log->etapa = "Em Ajuste";
-                if($pauta->log->etapa == 13)
-                    $pauta->log->etapa = "Concluída";
-                ?>
-
-                <p>{{ $pauta->log->etapa }}</p>
-                <p>{{ date('d/m/Y', strtotime($pauta->log->data_criacao)) }}</p>
-            </div>
-            <div class="block block-bordered block-rounded">
-                <div class="font-size-sm p-3">
-                <h5>Comentários</h5>
-
-                    @foreach($pauta->comentarios as $c)
-                    <div class="media">
-                        <a class="img-link mr-2" href="javascript:void(0)">
-                            <img class="img-avatar img-avatar32 img-avatar-thumb" src="{{ env('APP_URL').'/storage/temp' }}/{{ $c->foto_usuario }}" alt="">
-                        </a>
-                        <div class="media-body">
-                            <p class="mb-1">
-                                <span class="font-w600">{{ $c->name }}</span><br>
-                                {{ $c->comentario }}
-                            </p>
-                        </div>
-                    </div>
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Responsável</th>
+                        <th>Data</th>
+                        <th>Horário</th>
+                        <th>Histórico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($publicacoes as $p)
+                    <tr>
+                        <td>Jose</td>
+                        <td>{{ (new \Date($p->data_criacao))->format('d/m/Y') }}</td>
+                        <td>{{ (new \Date($p->data_criacao))->format('H:i') }}</td>
+                        <td><a class="font-w600 link-color" href="#{{ $p->id_publicacao }}">Ver conteúdo</a></td>
+                    </tr>
                     @endforeach
-                    
-                </div>
-                <div class="font-size-sm p-2">
-                    <form action="/api/insere_comentario" method="POST">
-                        <input type="hidden" name='id_tarefa' value="{{ $pauta->id_tarefa }}">
-                        <input type="text" name='comentario' class="form-control form-control-alt" placeholder="Escrever comentário">
-                        <button type="submit" class="btn-block-option btn btn-secundario" data-dismiss="modal" aria-label="Close">
-                                <i class="fa fa-fw fa-send"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="block block-bordered block-rounded p-3">
-                <h5>Imagem sugerida</h5>
-                <input type="file" name="" id="">
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
     <!-- END Advanced -->

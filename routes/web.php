@@ -64,7 +64,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
      Route::get('/conteudo/detalhes/{id}'           ,       'TarefaController@conteudodetalhes');
      Route::get('/conteudo/detalhes/editar/{id}'    ,       'TarefaController@conteudodetalheseditar');
      Route::get('/conteudo/detalhes/pauta/{id}'     ,       'TarefaController@conteudodetalhespauta');
-    
+     Route::get('/conteudo/detalhes/historico/{id}' ,       'TarefaController@conteudodetalheshistorico');
    
 });
 
