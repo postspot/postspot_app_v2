@@ -29,4 +29,9 @@ class Publicacao extends Model
 	{
 		return $this->belongsTo(\App\Tarefa::class, 'id_tarefa');
 	}
+
+	public function usuario()
+	{
+		return $this->belongsTo(\App\Usuario::class, 'id_usuario');
+	}
 }

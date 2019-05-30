@@ -68,10 +68,10 @@
                 <tbody>
                     @foreach($publicacoes as $p)
                     <tr>
-                        <td>Jose</td>
+                        <td>{{ $p->usuario->name }}</td>
                         <td>{{ (new \Date($p->data_criacao))->format('d/m/Y') }}</td>
                         <td>{{ (new \Date($p->data_criacao))->format('H:i') }}</td>
-                        <td><a class="font-w600 link-color" href="#{{ $p->id_publicacao }}">Ver conteúdo</a></td>
+                        <td><a class="font-w600 link-color" data-toggle="modal" data-target="#modal-conteudo-{{ $p->id_publicacao }}" href="javascript:void(0)">Ver conteúdo</a></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -82,69 +82,29 @@
 </div>
 
 
-
-<div class="modal fade" id="modal-ajustes" tabindex="-1" role="dialog" aria-labelledby="modal-ajustes" aria-hidden="true">
+@foreach($publicacoes as $p)
+<div class="modal fade" id="modal-conteudo-{{ $p->id_publicacao }}" tabindex="-1" role="dialog" aria-labelledby="modal-conteudo-{{ $p->id_publicacao }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form id="form_delete" action="/api/deletar_pauta/" method="POST" >
-                <div class="block block-transparent mb-0">
-                    <div class="block-header background-cinza">
-                        <h3 class="block-title">Você tem certeza?</h3>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                <i class="fa fa-fw fa-times"></i>
-                            </button>
-                        </div>
+            <div class="block block-transparent mb-0">
+                <div class="block-header background-cinza">
+                    <h3 class="block-title">Conteúdo da publicação</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-fw fa-times"></i>
+                        </button>
                     </div>
-                    <div class="block-content">
-                        <p>Você está prestes a solicitar ajustes no conteúdo. Verifique se fez todos os comentários necessários para auxiliar o time de conteúdo nos ajustes.</p>
-                        <input type="hidden" id="id_tarefa" value="">
-                    </div>
-                    <div class="block-content block-content-full text-right bg-light">
-                        <button type="submit" class="btn btn-sm btn-secundario">Solicitar ajustes</button>
-                        <button type="button" class="btn btn-sm btn-cinza" data-dismiss="modal">Cancelar</button>
-                    </div>
+                </div>  
+                <div class="block-content">
+                    <textarea style="width: 100%">{{ $p->texto_publicacao }}</textarea>
                 </div>
-            </form>
+                <div class="block-content block-content-full text-right bg-light">
+                    <button type="button" class="btn btn-sm btn-cinza" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-
-<div class="modal fade" id="modal-aprovar" tabindex="-1" role="dialog" aria-labelledby="modal-aprovar" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <form id="form_aprovacao" action="/api/aprovar_conteudo/" method="POST">
-                <div class="block block-transparent mb-0">
-                    <div class="block-header background-cinza">
-                        <h3 class="block-title">Aprovação do conteúdo</h3>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                <i class="fa fa-fw fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="block-content">
-                        <p>Como você avalia sua satisfação com o conteúdo recebido?</p>
-                        <div class="flex text-center mb-4">
-                            <p class="p-estrela text-left">Muito insatisfeito</p>
-                            <div class="estrelas"></div>
-                            <p class="p-estrela text-right">Muito satisfeito</p>
-                        </div>
-                        
-                        <p>Por favor, deixe um comentário sobre o conteúdo recebido.</p>
-                        <textarea required name="consideracoes_gerais" class="form-control form-control-alt" rows="5" placeholder="Escreva seu comentário aqui."></textarea>
-                    </div>
-                    <input name="id_tarefa" type="hidden" value="{{ $pauta->id_tarefa }}" />
-                    <input name="nota_tarefa" type="hidden" id="inputAvaliacao" />
-                    <div class="block-content block-content-full text-right bg-light">
-                        <button type="submit" class="btn btn-sm btn-secundario">Aprovar conteúdo</button>
-                        <button type="button" class="btn btn-sm btn-cinza" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+@endforeach
 <!-- END Page Content -->
 @endsection
