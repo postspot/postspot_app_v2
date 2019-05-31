@@ -180,7 +180,6 @@ class TarefaController extends Controller
     }
     public function conteudodetalhes($id)
     {
-
         $user = JWTAuth::toUser(JWTAuth::getToken());
         $pauta = Tarefa::where('id_tarefa',$id)->first();
 

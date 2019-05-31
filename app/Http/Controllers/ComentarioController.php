@@ -48,21 +48,23 @@ class ComentarioController extends Controller
     {
         try {
 
-           // dd($request);
-
+            // dd($request);
+            
             $user = JWTAuth::toUser(JWTAuth::getToken());
-
+            
             //criar novo projeto
             $comentario = new Comentario;
+            
             $info = $request->all();
-
+            
             $comentario->fill($info);
-
+            
             $comentario->id_usuario = $user->id;
-
+            
             $comentario->save();
 
-            //dd($comentario);
+            
+            
             return \Illuminate\Support\Facades\Redirect::to('/conteudo/detalhes/'.$request->id_tarefa)->withMessage('mensagem');  
 
         } 

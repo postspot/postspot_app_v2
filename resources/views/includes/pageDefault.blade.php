@@ -110,7 +110,7 @@
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn btn-dual" id="page-header-user-dropdown" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            <img class="img-avatar img-avatar32 img-avatar-thumb" src="{{ asset('media/temp/') }}/{{ JWTAuth::toUser(JWTAuth::getToken())->foto_usuario }}"
+                            <img class="img-avatar img-avatar32 img-avatar-thumb" src="{{ env('APP_URL').'/storage/temp' }}/{{ JWTAuth::toUser(JWTAuth::getToken())->foto_usuario }}"
                                 alt="">
                             Visite Poços de Caldas
                             <i class="fa fa-fw fa-angle-down ml-0"></i>
