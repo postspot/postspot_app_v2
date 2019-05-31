@@ -55,6 +55,7 @@ Route::post('aprovar_conteudo'                      ,       'PublicacaoControlle
 
 //COMENTARIO
 Route::post('insere_comentario'                     ,       'ComentarioController@store');
+Route::delete('deletar_comentario/{id}'                 ,       'ComentarioController@deletarcomentario');
 
 Route::get('open', 'DataController@open');
 

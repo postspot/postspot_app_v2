@@ -60,18 +60,18 @@ class Estrategia extends Model
 
 	public function projeto()
 	{
-		return $this->belongsTo(\App\Models\Projeto::class, 'id_projeto');
+		return $this->belongsTo(\App\Projeto::class, 'id_projeto');
 	}
 
 	public function categorias()
 	{
-		return $this->belongsToMany(\App\Models\Categoria::class, 'categorias_estrategia', 'id_estrategia', 'id_categoria')
+		return $this->belongsToMany(\App\Categoria::class, 'categorias_estrategia', 'id_estrategia', 'id_categoria')
 					->withPivot('id_categoria_estrategia');
 	}
 
 	public function linguagens()
 	{
-		return $this->belongsToMany(\App\Models\Linguagen::class, 'linguagens_estrategia', 'id_estrategia', 'id_linguagem')
+		return $this->belongsToMany(\App\Linguagen::class, 'linguagens_estrategia', 'id_estrategia', 'id_linguagem')
 					->withPivot('id_linguagem_estrategia');
 	}
 }

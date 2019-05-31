@@ -112,7 +112,7 @@
                             aria-haspopup="true" aria-expanded="false">
                             <img class="img-avatar img-avatar32 img-avatar-thumb" src="{{ env('APP_URL').'/storage/temp' }}/{{ JWTAuth::toUser(JWTAuth::getToken())->foto_usuario }}"
                                 alt="">
-                            Visite Poços de Caldas
+                            {{ JWTAuth::toUser(JWTAuth::getToken())->name }}
                             <i class="fa fa-fw fa-angle-down ml-0"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-md p-0" aria-labelledby="page-header-user-dropdown">

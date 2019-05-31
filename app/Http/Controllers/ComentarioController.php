@@ -145,6 +145,23 @@ class ComentarioController extends Controller
         return redirect('comentario');
     }
 
+    public function deletarcomentario($id) {
+        try {
+            $comentario = Comentario::findOrFail($id);
+            
+            $id_pauta = $comentario->tarefa->id_tarefa;
+
+            $comentario->delete();
+
+            $mensagem = 'Comentário excluído';
+
+            return \Illuminate\Support\Facades\Redirect::to('/conteudo/detalhes/'.$id_pauta)->withMessage('mensagem');  
+        } catch (Exception $e) {
+            $error = 'Erro ao excluir comentário. Tente novamente.';
+            return \Illuminate\Support\Facades\Redirect::to('/conteudo/detalhes/'.$request->id_tarefa)->withMessage('error');  
+        }
+    }
+
     private function rules()
     {
         return [

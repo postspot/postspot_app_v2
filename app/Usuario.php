@@ -67,28 +67,28 @@ class Usuario extends Authenticatable implements JWTSubject
 
     public function anexos()
 	{
-		return $this->hasMany(\App\Models\Anexo::class, 'id_responsavel');
+		return $this->hasMany(\App\Anexo::class, 'id_responsavel');
 	}
 
 	public function candidatos()
 	{
-		return $this->hasMany(\App\Models\Candidato::class, 'id');
+		return $this->hasMany(\App\Candidato::class, 'id');
 	}
 
 	public function comentarios()
 	{
-		return $this->hasMany(\App\Models\Comentario::class, 'id');
+		return $this->hasMany(\App\Comentario::class, 'id');
 	}
 
 	public function habilidades()
 	{
-		return $this->belongsToMany(\App\Models\Habilidade::class, 'habilidades_usuario', 'id', 'id_habilidade')
+		return $this->belongsToMany(\App\Habilidade::class, 'habilidades_usuario', 'id', 'id_habilidade')
 					->withPivot('id_habilidade_usuario');
 	}
 
 	public function idiomas()
 	{
-		return $this->belongsToMany(\App\Models\Idioma::class, 'idiomas_usuario', 'id', 'id_idioma')
+		return $this->belongsToMany(\App\Idioma::class, 'idiomas_usuario', 'id', 'id_idioma')
 					->withPivot('id_idiomas_usuario');
 	}
 
@@ -99,7 +99,7 @@ class Usuario extends Authenticatable implements JWTSubject
 
 	public function membros_equipes()
 	{
-		return $this->hasMany(\App\Models\MembrosEquipe::class, 'id');
+		return $this->hasMany(\App\MembrosEquipe::class, 'id');
 	}
 
 	public function projetos()

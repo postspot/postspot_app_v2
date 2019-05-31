@@ -101,8 +101,56 @@
                                 <span class="font-w600">{{ $c->name }}</span><br>
                                 {{ $c->comentario }}
                             </p>
+                            <div class="media-footer mb-3   ">
+                            <a data-toggle="modal" data-target="#modal-deletar-{{ $c->id_comentario }}" href="javascript:void(0)" class="delete-btn">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                                <span class="pull-right">{{ $c->data_criacao->format('d/m/Y H:i') }}</span>
+                            </div>
                         </div>
                     </div>
+
+
+                    <div class="modal fade" id="modal-deletar-{{ $c->id_comentario }}" tabindex="-1" role="dialog" aria-labelledby="modal-deletar-{{ $c->id_comentario }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form id="form_aprovacao" action="/api/deletar_comentario/{{ $c->id_comentario }}" method="POST">
+                                    {!! method_field('delete') !!}
+                                    <div class="block block-transparent mb-0">
+                                        <div class="block-header background-cinza">
+                                            <h3 class="block-title">Confirmar exclusão?</h3>
+                                            <div class="block-options">
+                                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                                    <i class="fa fa-fw fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="block-content">
+                                            <div class="media">
+                                                <a class="img-link mr-2" href="javascript:void(0)">
+                                                    <img class="img-avatar img-avatar32 img-avatar-thumb" src="{{ env('APP_URL').'/storage/temp' }}/{{ $c->foto_usuario }}" alt="">
+                                                </a>
+                                                <div class="media-body">
+                                                    <p class="mb-2">
+                                                        <span class="font-w600">{{ $c->name }}</span><br>
+                                                        {{ $c->comentario }}
+                                                    </p>
+                                                    <p class="text-muted mb-1">Essa ação não poderá ser desfeita.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input name="id_tarefa" type="hidden" value="{{ $pauta->id_tarefa }}" />
+                                        <input name="nota_tarefa" type="hidden" id="inputAvaliacao" />
+                                        <div class="block-content block-content-full text-right bg-light">
+                                            <button type="submit" class="btn btn-sm btn-risco">Apagar comentário</button>
+                                            <button type="button" class="btn btn-sm btn-cinza" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+    
                     @endforeach
                     
                 </div>

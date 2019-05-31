@@ -41,7 +41,7 @@ class Tarefa extends Model
 
 	public function equipe()
 	{
-		return $this->belongsTo(\App\Models\Equipe::class, 'id_equipe');
+		return $this->belongsTo(\App\Equipe::class, 'id_equipe');
 	}
 
 	public function projeto()

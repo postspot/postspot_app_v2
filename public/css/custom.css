@@ -90,6 +90,17 @@ width: auto;
     background-color: #1A7D8B;
 }
 
+.btn-risco{
+    background-color: rgb(200,100,100);;
+    color: #fff;
+    border-radius: 2px;
+    padding: 11px 24px;
+}
+.btn-risco:hover {
+    color: #fff;
+    background-color: rgb(126, 0, 0);;
+}
+
 .btn-secundario{
     background-color: #403B3B;
     color: #fff;
@@ -437,4 +448,18 @@ width: auto;
     font-size: 2em;
     display: flex;
     justify-content: space-around;
+}
+.media-body {
+    text-align: justify;
+}
+.media-footer {
+    color: rgb(100,100,100);
+    font-size: 9pt;
+    cursor: default
+}
+.delete-btn {
+    color: rgb(100,100,100);
+}
+.delete-btn:hover {
+    color: rgb(200,100,100);
 }

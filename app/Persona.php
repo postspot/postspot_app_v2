@@ -45,6 +45,6 @@ class Persona extends Model
 
 	public function projeto()
 	{
-		return $this->belongsTo(\App\Models\Projeto::class, 'id_projeto');
+		return $this->belongsTo(\App\Projeto::class, 'id_projeto');
 	}
 }
