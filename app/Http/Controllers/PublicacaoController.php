@@ -23,6 +23,7 @@ class PublicacaoController extends Controller
             $publicacao->fill($info);
             $publicacao->data_criacao = \Carbon\Carbon::now();
             $publicacao->status_publicacao = 1;
+            $publicacao->id_usuario = $user->id;
             $publicacao->save();
             $pauta = $publicacao->tarefa;
             $pauta->publicacoes = $publicacao;
