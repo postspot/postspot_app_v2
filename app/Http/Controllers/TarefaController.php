@@ -53,7 +53,7 @@ class TarefaController extends Controller
         $user = JWTAuth::toUser(JWTAuth::getToken());
         
         $tarefas = $user->log_tarefas()->join('tarefas', 'tarefas.id_tarefa', 'log_tarefas.id_tarefa')->join('tamanhos', 'tamanhos.id_tamanho', 'tarefas.id_tamanho')->select(\DB::raw('log_tarefas.data_prevista,
-        tarefas.id_tarefa, tarefas.nome_tarefa, tarefas.data_criacao, log_tarefas.etapa, tamanhos.tamanho'))->where([['status','=','1'], ['etapa', '>', '6']])->get();
+        tarefas.id_tarefa, tarefas.nome_tarefa, tarefas.data_criacao, log_tarefas.etapa, tamanhos.tamanho'))->where([['status','=','1'], ['etapa', '>', 6]])->get();
 
         //dd($tarefas);
 
@@ -64,8 +64,8 @@ class TarefaController extends Controller
     {
         $user = JWTAuth::toUser(JWTAuth::getToken());
         
-        $tarefas = $user->log_tarefas()->join('tarefas', 'tarefas.id_tarefa', 'log_tarefas.id_tarefa')->select(\DB::raw('log_tarefas.data_prevista,
-        tarefas.id_tarefa, tarefas.nome_tarefa, tarefas.data_criacao, log_tarefas.etapa'))->where([['status','=','1'], ['etapa', '=', $id]])->get();
+        $tarefas = $user->log_tarefas()->join('tarefas', 'tarefas.id_tarefa', 'log_tarefas.id_tarefa')->join('tamanhos', 'tamanhos.id_tamanho', 'tarefas.id_tamanho')->select(\DB::raw('log_tarefas.data_prevista,
+        tarefas.id_tarefa, tarefas.nome_tarefa, tarefas.data_criacao, log_tarefas.etapa, tamanhos.tamanho'))->where([['status','=','1'], ['etapa', '=', $id]])->get();
 
 
         return view('conteudos_filtro',  ['tarefas' => $tarefas], ['id' => $id]);

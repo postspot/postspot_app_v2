@@ -74,6 +74,13 @@
                         <td><a class="font-w600 link-color" data-toggle="modal" data-target="#modal-conteudo-{{ $p->id_publicacao }}" href="javascript:void(0)">Ver conteúdo</a></td>
                     </tr>
                     @endforeach
+
+                    @if ($publicacoes->isEmpty())
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">Não há publicações até o momento</td>
+                    </tr>
+                    @endif
+
                 </tbody>
             </table>
         </div>

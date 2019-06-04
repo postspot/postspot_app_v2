@@ -63,7 +63,22 @@
             </div>
             <div class="block block-bordered block-rounded">
                 <div class="block-content">
-                    {{ isset($pauta->publicacoes->id) ? $pauta->publicacoes->texto_publicacao : "Conteúdo em produção"  }}
+                    @if (isset($pauta->publicacoes()->get()->last()->id_publicacao))
+                        {!! $pauta->publicacoes()->get()->last()->texto_publicacao  !!}
+                    @else
+                        <h5 class="text-center text-muted">
+                            @php
+                                if($pauta->log->etapa == 8) 
+                                    echo "Conteúdo em produção";
+                                if($pauta->log->etapa == 11)
+                                    echo "Conteúdo em Aprovação";
+                                if($pauta->log->etapa == 12)
+                                    echo "Conteúdo em Ajuste";
+                                if($pauta->log->etapa == 13)
+                                    echo "Conteúdo concluído"; 
+                            @endphp
+                        </h5>
+                    @endif
                 </div>
             </div>
         </div>

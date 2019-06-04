@@ -53,8 +53,21 @@
                             {{isset($pauta->publicacoes->id)? $pauta->publicacoes->texto_publicacao:''}}
                         </textarea>
                     @else
-                        <div class="block-content">
-                            <h5 class="text-center text-muted">Conteúdo em produção</h5>
+                        <div class="block block-bordered block-rounded">
+                            <div class="block-content">
+                                <h5 class="text-center text-muted">
+                                    @php
+                                        if($pauta->log->etapa == 8) 
+                                            echo "Conteúdo em produção";
+                                        if($pauta->log->etapa == 11)
+                                            echo "Conteúdo em Aprovação";
+                                        if($pauta->log->etapa == 12)
+                                            echo "Conteúdo em Ajuste";
+                                        if($pauta->log->etapa == 13)
+                                            echo "Conteúdo concluído"; 
+                                    @endphp
+                                </h5>
+                            </div>
                         </div>
                     @endif
                     
@@ -73,13 +86,13 @@
                 <?php
                 if($pauta->log->etapa == 8)
                      $pauta->log->etapa = "Em produção";
-                if($pauta->log->etapa == 9)
-                    $pauta->log->etapa = "Revisão";
                 if($pauta->log->etapa == 10)
-                    $pauta->log->etapa = "Em Aprovação";
+                    $pauta->log->etapa = "Revisão";
                 if($pauta->log->etapa == 11)
-                    $pauta->log->etapa = "Em Ajuste";
+                    $pauta->log->etapa = "Em Aprovação";
                 if($pauta->log->etapa == 12)
+                    $pauta->log->etapa = "Em Ajuste";
+                if($pauta->log->etapa == 13)
                     $pauta->log->etapa = "Concluída";
                 ?>
 

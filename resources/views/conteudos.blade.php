@@ -31,10 +31,10 @@
             <ul class="menu-lateral">
                 <li class="active"><a href="conteudos">Todos os conteúdos</a></li>
                 <li><a href="conteudos/filtro/8">Conteúdos em produção</a></li>
-                <li><a href="conteudos/filtro/9">Conteúdos em revisão</a></li>
-                <li><a href="conteudos/filtro/10">Conteúdos em aprovação</a></li>
-                <li><a href="conteudos/filtro/11">Conteúdos em ajuste</a></li>
-                <li><a href="conteudos/filtro/12">Conteúdos concluídos</a></li>
+                <li><a href="conteudos/filtro/10">Conteúdos em revisão</a></li>
+                <li><a href="conteudos/filtro/11">Conteúdos em aprovação</a></li>
+                <li><a href="conteudos/filtro/12">Conteúdos em ajuste</a></li>
+                <li><a href="conteudos/filtro/13">Conteúdos concluídos</a></li>
             </ul>
         </div>
         <div class="col-md-9">
@@ -64,16 +64,16 @@
                             else if($t->estagio_compra == 4)
                                 $t->estagio_compra = "Recorrência"; 
                             
-                            
+                        
                             if($t->etapa == 8)
                                 $t->etapa = "Em produção";
-                            if($t->etapa == 9)
-                                $t->etapa = "Revisão";
                             if($t->etapa == 10)
-                                $t->etapa = "Em Aprovação";
+                                $t->etapa = "Revisão";
                             if($t->etapa == 11)
-                                $t->etapa = "Em Ajuste";
+                                $t->etapa = "Em Aprovação";
                             if($t->etapa == 12)
+                                $t->etapa = "Em Ajuste";
+                            if($t->etapa == 13)
                                 $t->etapa = "Concluída";
                         ?>
                         <tr>
@@ -95,6 +95,12 @@
                         
                         </tr>
                         @endforeach
+                        
+                        @if ($tarefas->isEmpty())
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">Não foi encontrado nenhum conteúdo</td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
 

@@ -463,3 +463,6 @@ width: auto;
 .delete-btn:hover {
     color: rgb(200,100,100);
 }
+.block-content>h5 {
+    margin: 0;
+}
