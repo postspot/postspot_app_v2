@@ -8,6 +8,7 @@ use App\Projeto;
 use App\Persona;
 use JWTAuth;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 class PersonaController extends Controller
@@ -61,7 +62,14 @@ class PersonaController extends Controller
             $persona->fill($info);
 
             $persona->id_projeto= $ativo->id_projeto;
-            
+
+            if ($request->hasFile('image')) {
+                $img_name = md5(time()).'.'.$request->file('image')->getClientOriginalExtension();
+                $upload = $request->image->storeAs('persona', $img_name);
+                Storage::delete("/persona/{$persona->foto}");
+                $persona->foto = $img_name;
+            }
+
             $persona->save();
 
             return \Illuminate\Support\Facades\Redirect::to('/persona')->withMessage('mensagem');  
@@ -114,17 +122,25 @@ class PersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{
+        try{            
             $persona = Persona::where('id_persona', $id)->first();
             $info = $request->all();
             $persona->fill($info);
+
+            if ($request->hasFile('image')) {
+                $img_name = md5(time()).'.'.$request->file('image')->getClientOriginalExtension();
+                $upload = $request->image->storeAs('persona', $img_name);
+                Storage::delete("/persona/{$persona->foto}");
+                $persona->foto = $img_name;
+            }
+
             
+
             $persona->save();
 
             return view('persona_editar',  ['persona' => $persona], ['message' => 'Dados atualizados com sucesso!']);
         }
         catch (\Throwable $e) {
-
             return view('persona_editar',  ['persona' => $request], ['error' => 'Falha ao atualizar os dados']);
         }
     }

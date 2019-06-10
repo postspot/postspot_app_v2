@@ -24,8 +24,8 @@
             </ul>
         </div>
         <div class="col-md-6 col-sm-12">
-        <form action="/api/editar_persona/{{ $persona->id_persona }}" method="post">
-        @method('PUT')
+        <form enctype="multipart/form-data" action="/api/editar_persona/{{ $persona->id_persona }}" method="POST">
+            @method('PUT')
             @if(isset($message))
             <div class="mb-3 alert alert-success" role="alert">
                 {{ $message }}
@@ -41,7 +41,7 @@
             <div class="block block-bordered block-rounded">
                 <div class="block-content">
                     <div class="flex mb-4">
-                        <img src="{{ env('APP_URL').'/storage/temp' }}/{{ $persona->foto }}" alt="" class="foto-80 rounded-circle">
+                        <img src="{{ env('APP_URL').'/storage/persona' }}/{{ $persona->foto }}" alt="" class="foto-80 rounded-circle">
                             <div class="campo-foto-usuario">
                             <p class="font-w600 mb-2">Avatar da persona</p>
                                 <input type="file" name="image" class="btn btn-cinza" />

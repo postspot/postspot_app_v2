@@ -345,9 +345,10 @@ class UserController extends Controller
                         $user->fill($data);
 
                         if ($request->hasFile('image')) {
-                                $upload = $request->image->storeAs('temp', $request->file('image')->getClientOriginalName());
-                                Storage::delete("storage/temp/{$user->foto_usuario}");
-                                $user->foto_usuario = $request->file('image')->getClientOriginalName();
+                                $img_name = md5(time()).'.'.$request->file('image')->getClientOriginalExtension();
+                                $upload = $request->image->storeAs('temp', $img_name);
+                                Storage::delete("/temp/{$user->foto_usuario}");
+                                $user->foto_usuario = $img_name;
                         }
 
                         $user->save();

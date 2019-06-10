@@ -42,7 +42,7 @@
             <div class="block block-bordered block-rounded">
                 <div class="block-content">
                     <div class="flex mb-4">
-                        <img src="{{ asset('media/temp/sem_foto.png') }}" alt="" class="foto-80 rounded-circle">
+                        <img src="{{ env('APP_URL').'/storage/persona' }}/{{ $persona->foto }}" alt="" class="foto-80 rounded-circle">
                         <div class="campo-foto-usuario">
                             <p class="font-w600 mb-2">Avatar da persona</p>
                         </div>
